@@ -75,7 +75,7 @@ export function ContactSection() {
     setStatus(null)
 
     try {
-      // Use EmailJS - ensure env vars are set (see README)
+      // 1. Send email to you (owner) with the contact message
       await emailjs.sendForm(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
@@ -83,9 +83,18 @@ export function ContactSection() {
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
 
+      // 2. Send auto-reply confirmation to the client
+      await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID,
+        form,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+
       console.log('ENV:',
          { service: import.meta.env.VITE_EMAILJS_SERVICE_ID,
            Template: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+           AutoReply: import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID,
              key: import.meta.env.VITE_EMAILJS_PUBLIC_KEY });
 
       setStatus({ ok: true, message: 'Message envoyé — je vous réponds sous 24-48h.' })
