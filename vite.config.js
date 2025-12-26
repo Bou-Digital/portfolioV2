@@ -5,6 +5,6 @@ import tailwindcss from '@tailwindcss/vite'   // ✅ IMPORT NECESSAIRE
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/',
+  base: '/portfolioV2/',
 
 })
