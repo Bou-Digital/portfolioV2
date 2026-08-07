@@ -1,8 +1,29 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from './ui/button'
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
+
+function CountUp({ end, delay = 0 }: { end: number; delay?: number }) {
+  const [count, setCount] = useState(0)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const duration = 1800
+      const start = performance.now()
+      const step = (now: number) => {
+        const p = Math.min((now - start) / duration, 1)
+        const ease = 1 - Math.pow(1 - p, 3)
+        setCount(Math.floor(ease * end))
+        if (p < 1) requestAnimationFrame(step)
+        else setCount(end)
+      }
+      requestAnimationFrame(step)
+    }, delay)
+    return () => clearTimeout(timer)
+  }, [end, delay])
+  return <>{count}</>
+}
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -102,11 +123,31 @@ export function HeroSection() {
             transition={{ delay: 0.8 }}
             className="text-gray-400 text-lg max-w-2xl mx-auto mb-8"
           >
-            Je crée des applications exceptionnelles en utilisant des technologies de pointe
-            comme Flutter, Java, Angular, React... Passionné par le code propre,
-            l'expérience utilisateur et la concrétisation des idées.
+            Fondateur de Bou Digital — SaaS actifs en production en Afrique de l'Ouest.
+            Certifié FORCE-N IA. Remote international. Agile & livraisons rapides.
           </motion.p>
-          
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9 }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto"
+          >
+            {[
+              { value: 4, suffix: '+', label: "ans d'expérience" },
+              { value: 2, suffix: '', label: 'SaaS actifs' },
+              { value: 4, suffix: '', label: 'apps Play Store' },
+              { value: 9, suffix: '', label: 'modules livrés' },
+            ].map((stat, i) => (
+              <div key={i} className="text-center py-3 px-2 bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm">
+                <div className="text-2xl font-bold text-emerald-400">
+                  <CountUp end={stat.value} delay={1000 + i * 150} />{stat.suffix}
+                </div>
+                <div className="text-gray-400 text-xs mt-1 leading-tight">{stat.label}</div>
+              </div>
+            ))}
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

@@ -1,13 +1,18 @@
 'use client'
 
+import { useState } from 'react'
 import { Card } from './ui/card'
 import { Button } from './ui/button'
 import { ExternalLink } from 'lucide-react'
 import { ImageWithFallback } from './figma/ImageWithFallback'
 import { motion } from 'framer-motion'
 
+const FILTERS = ['Tous', 'SaaS', 'Mobile', 'IoT', 'Design'] as const
+type Filter = typeof FILTERS[number]
 
 export function ProjectsSection() {
+  const [activeFilter, setActiveFilter] = useState<Filter>('Tous')
+
   const projects = [
     {
       title: "Modules Mobile & Backend Walalma",
@@ -16,7 +21,8 @@ export function ProjectsSection() {
       image: import.meta.env.BASE_URL + "walalma.jpeg",
       technologies: ["Flutter", "Angular", "Spring Boot", "MySQL"],
       live: "https://app.walalma.com",
-      featured: true
+      featured: true,
+      categories: ['Mobile', 'SaaS']
     },
     {
       title: "Dashboard Walalma — Tableau de bord solaire",
@@ -25,7 +31,8 @@ export function ProjectsSection() {
       image: import.meta.env.BASE_URL + "walalma2.jpeg",
       technologies: ["Angular", "Spring Boot", "MySQL"],
       live: "https://app.walalma.com",
-      featured: true
+      featured: true,
+      categories: ['SaaS', 'IoT']
     },
     {
       title: "Restaurant SaaS Manager",
@@ -34,7 +41,8 @@ export function ProjectsSection() {
       image: import.meta.env.BASE_URL + "restaurant-dashboard.png",
       technologies: ["Angular", "Spring Boot", "Flutter", "MySQL"],
       live: "https://restaurant-manager.mooo.com",
-      featured: true
+      featured: true,
+      categories: ['SaaS', 'Mobile']
     },
     {
       title: "Boutique Gestion — SaaS Commercial",
@@ -43,7 +51,8 @@ export function ProjectsSection() {
       image: import.meta.env.BASE_URL + "boutique-dashboard.png",
       technologies: ["Angular", "TypeScript", "Tailwind CSS", "Spring Boot", "MySQL", "Docker", "PWA"],
       live: "https://gestion-boutique.mooo.com",
-      featured: true
+      featured: true,
+      categories: ['SaaS']
     },
     {
       title: "Développeur Mobile Freelance — Application Va Bene",
@@ -52,7 +61,8 @@ export function ProjectsSection() {
       image: import.meta.env.BASE_URL + "vabene1.jpeg",
       technologies: ["React Native", "Node.js", "API REST", "Firebase"],
       live: "https://vabenepizza.ch/fr",
-      featured: true
+      featured: true,
+      categories: ['Mobile']
     },
     {
       title: "Responsable Digital — Projet PanoMagik",
@@ -60,9 +70,9 @@ export function ProjectsSection() {
       description: "Pilotage et développement d'un écosystème digital complet pour la gestion d'installations solaires.",
       image: import.meta.env.BASE_URL + "panomagik.jpg",
       technologies: ["Flutter", "Angular", "Spring Boot", "MySQL", "IoT"],
-      github: "#",
       live: "https://admin.panomagik.com/",
-      featured: true
+      featured: true,
+      categories: ['IoT', 'Mobile']
     },
     {
       title: "Sama Pump",
@@ -70,9 +80,9 @@ export function ProjectsSection() {
       description: "Application de suivi des pompes solaires — publication sur Google Play.",
       image: import.meta.env.BASE_URL + "samapompe.png",
       technologies: ["Flutter", "Spring Boot", "MySQL", "IoT"],
-      github: "#",
       live: "https://play.google.com/store/apps/details?id=com.nadjibi.app_pompe&hl=fr",
-      featured: true
+      featured: true,
+      categories: ['Mobile', 'IoT']
     },
     {
       title: "Woomal Mbay Contacts",
@@ -80,9 +90,9 @@ export function ProjectsSection() {
       description: "Gestion des contacts pour le programme Woomal Mbay.",
       image: import.meta.env.BASE_URL + "wcontact.jpeg",
       technologies: ["Flutter", "Spring Boot", "MySQL"],
-      github: "#",
       live: "https://play.google.com/store/apps/details?id=com.nadjibi.woomal_mbay_contact&hl=fr",
-      featured: true
+      featured: true,
+      categories: ['Mobile']
     },
     {
       title: "Développeur Sénior Android & Web — Programme Woomal Mbay",
@@ -91,7 +101,8 @@ export function ProjectsSection() {
       image: import.meta.env.BASE_URL + "woomalmbay.jpg",
       technologies: ["Flutter", "Angular", "Spring Boot", "MySQL", "IoT"],
       live: "https://app.woomalmbay.com/",
-      featured: false
+      featured: false,
+      categories: ['Mobile', 'IoT']
     },
     {
       title: "Développeur Junior — Projet Walalma",
@@ -100,7 +111,8 @@ export function ProjectsSection() {
       image: import.meta.env.BASE_URL + "walalma.jpeg",
       technologies: ["Flutter", "Angular", "Spring Boot", "MySQL", "IoT"],
       live: "https://admin.panomagik.com/",
-      featured: false
+      featured: false,
+      categories: ['Mobile', 'IoT']
     },
     {
       title: "Infographiste / Responsable Digital",
@@ -108,14 +120,18 @@ export function ProjectsSection() {
       description: "Création de contenus visuels et soutien à la communication digitale de l'association.",
       image: import.meta.env.BASE_URL + "bou.png",
       technologies: ["Figma", "Illustrator", "Photoshop", "Canva"],
-      github: "#",
       live: "#",
-      featured: false
+      featured: false,
+      categories: ['Design']
     }
   ]
 
-  const featuredProjects = projects.filter(p => p.featured)
-  const otherProjects = projects.filter(p => !p.featured)
+  const filtered = activeFilter === 'Tous'
+    ? projects
+    : projects.filter(p => p.categories.includes(activeFilter))
+
+  const featuredProjects = activeFilter === 'Tous' ? projects.filter(p => p.featured) : filtered
+  const otherProjects = activeFilter === 'Tous' ? projects.filter(p => !p.featured) : []
 
   return (
     <section id="projets" className="py-20 bg-gray-900">
@@ -132,6 +148,22 @@ export function ProjectsSection() {
           <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
             Voici quelques-uns de mes projets récents qui mettent en valeur mes compétences et ma passion pour le développement web et mobile.
           </p>
+
+          <div className="flex flex-wrap justify-center gap-3 mt-8">
+            {FILTERS.map(f => (
+              <button
+                key={f}
+                onClick={() => setActiveFilter(f)}
+                className={`px-5 py-2 rounded-full text-sm font-medium border transition-all duration-300 ${
+                  activeFilter === f
+                    ? 'bg-emerald-500 border-emerald-500 text-white'
+                    : 'border-white/20 text-gray-400 hover:border-emerald-500/50 hover:text-white'
+                }`}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
         {/* Featured Projects */}

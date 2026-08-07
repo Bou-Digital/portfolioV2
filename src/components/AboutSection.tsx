@@ -2,29 +2,29 @@
 
 import { motion } from 'framer-motion'
 import { Card } from './ui/card'
-import { Code, Coffee, Lightbulb, Users } from 'lucide-react'
+import { Building2, Globe, Brain, Zap } from 'lucide-react'
 
 export function AboutSection() {
   const features = [
     {
-      icon: Code,
-      title: 'Clean Code',
-      description: "Écrire du code maintenable, évolutif et efficace qui résiste à l'épreuve du temps."
+      icon: Building2,
+      title: 'Fondateur — Bou Digital',
+      description: "Créateur de 2 SaaS multi-tenant actifs en production : Boutique Gestion et Restaurant Manager, adaptés à l'Afrique francophone."
     },
     {
-      icon: Lightbulb,
-      title: 'Innovation',
-      description: 'Toujours à la recherche de nouvelles technologies et de solutions créatives à des problèmes complexes.'
+      icon: Globe,
+      title: 'Remote international',
+      description: "Collaboration en remote avec des équipes suisses (Faseya / Va Bene) et des clients en Afrique de l'Ouest."
     },
     {
-      icon: Users,
-      title: 'Collaboration',
-      description: 'Travailler efficacement avec les équipes pour offrir des expériences utilisateur exceptionnelles.'
+      icon: Brain,
+      title: 'Certifié FORCE-N IA',
+      description: 'Certifié en Intelligence Artificielle appliquée — programme national sénégalais FORCE-N (jan–juil 2025).'
     },
     {
-      icon: Coffee,
-      title: 'Dévouement',
-      description: "Engagé dans l'apprentissage continu et à rester à jour avec les tendances du secteur."
+      icon: Zap,
+      title: 'Agile & livraisons rapides',
+      description: 'Boutique Gestion livré en 1 mois. 9 modules Walalma intégrés en moins d\'un mois directement en production.'
     }
   ]
 

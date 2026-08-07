@@ -1,11 +1,12 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Download } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Download, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +17,7 @@ export function Navigation() {
   }, [])
 
   const scrollToSection = (sectionId: string) => {
+    setMobileOpen(false)
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
@@ -67,8 +69,42 @@ export function Navigation() {
               </motion.button>
             ))}
           </div>
+
+          {/* Hamburger button — mobile only */}
+          <button
+            className="md:hidden text-white p-2"
+            onClick={() => setMobileOpen(o => !o)}
+            aria-label="Menu"
+          >
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+            className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/10 overflow-hidden"
+          >
+            <div className="flex flex-col px-6 py-4 space-y-1">
+              {['accueil', 'à propos', 'compétences', 'projets', 'services', 'contact'].map(item => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className="text-gray-300 hover:text-white py-3 text-left capitalize border-b border-white/5 last:border-0 transition-colors duration-200"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   )
 }

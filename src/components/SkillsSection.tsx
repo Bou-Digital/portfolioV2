@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Card } from './ui/card'
+import { GraduationCap, Award } from 'lucide-react'
 
 export function SkillsSection() {
   const skillCategories = [
@@ -164,6 +165,67 @@ export function SkillsSection() {
               >
                 {tech}
               </motion.span>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Formation & Certifications */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mt-20"
+        >
+          <h3 className="text-2xl text-white text-center mb-10">Formation & Certifications</h3>
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              {
+                icon: Award,
+                period: 'Jan – Juil 2025',
+                title: 'Certification IA appliquée',
+                org: 'FORCE-N — Programme national sénégalais',
+                color: 'from-emerald-500/20 to-emerald-600/5',
+                border: 'border-emerald-500/30',
+                iconColor: 'text-emerald-400',
+                iconBg: 'bg-emerald-500/20',
+              },
+              {
+                icon: GraduationCap,
+                period: '2018 – 2021',
+                title: 'Licence Informatique & Réseaux',
+                org: 'AFI L\'UE — Dakar, Sénégal',
+                color: 'from-blue-500/20 to-blue-600/5',
+                border: 'border-blue-500/30',
+                iconColor: 'text-blue-400',
+                iconBg: 'bg-blue-500/20',
+              },
+              {
+                icon: GraduationCap,
+                period: '2017 – 2018',
+                title: 'Baccalauréat Série S2',
+                org: 'Lycée Demba Diop — Mbour',
+                color: 'from-purple-500/20 to-purple-600/5',
+                border: 'border-purple-500/30',
+                iconColor: 'text-purple-400',
+                iconBg: 'bg-purple-500/20',
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.15, duration: 0.6 }}
+                viewport={{ once: true }}
+                className={`p-6 rounded-2xl bg-gradient-to-br ${item.color} border ${item.border}`}
+              >
+                <div className={`w-10 h-10 rounded-xl ${item.iconBg} flex items-center justify-center mb-4`}>
+                  <item.icon className={`w-5 h-5 ${item.iconColor}`} />
+                </div>
+                <p className="text-gray-400 text-xs mb-1">{item.period}</p>
+                <h4 className="text-white font-medium mb-1">{item.title}</h4>
+                <p className="text-gray-400 text-sm">{item.org}</p>
+              </motion.div>
             ))}
           </div>
         </motion.div>
