@@ -51,18 +51,18 @@ export function AboutSection() {
             className="space-y-6"
           >
             <h3 className="text-2xl text-white mb-4">
-              Passionné par la création d'expériences digitales significatives
+              Passionné par la création d’expériences digitales significatives
             </h3>
             <p className="text-gray-300 leading-relaxed">
-              Développeur Full Stack Web & Mobile (Flutter, React Native, Angular, React, Spring Boot)
-              avec 4+ ans d’expérience en applications web et mobiles.
-              Focus UX, intégrations IoT et solutions à impact.
-              
+              Développeur Full Stack Web & Mobile avec plus de 4 ans d’expérience dans la conception
+              et le déploiement de solutions digitales en production en Afrique de l’Ouest.
+              Fondateur de <span className="text-emerald-400">Bou Digital</span> — suite de SaaS
+              multi-tenant actifs (Boutique Gestion, Restaurant Manager).
             </p>
             <p className="text-gray-300 leading-relaxed">
-              J’accompagne les entreprises dans la création d’expériences digitales performantes
-              et humaines, en transformant leurs besoins en solutions fluides, 
-              pensées pour l’impact et l’expérience utilisateur.
+              Expérience internationale en remote (Suisse), livraisons Play Store, architecture
+              microservices, intégration IoT et IA appliquée. Certifié FORCE-N en Intelligence
+              Artificielle. Rigoureux, orienté résultats, à l’aise en Agile et en remote.
             </p>
             
             <motion.div

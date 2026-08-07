@@ -22,7 +22,7 @@ export function Navigation() {
     }
   }
 
-  const resumePath = `${import.meta.env.BASE_URL || '/'}CV_Boucounta_Ba 02.12.25 V5.pdf`
+  const resumePath = `${import.meta.env.BASE_URL || '/'}CV_Boucounta_22.06.26_Principal.pdf`
 
   return (
     <motion.nav
@@ -54,7 +54,7 @@ export function Navigation() {
           
           
           <div className="hidden md:flex items-center space-x-8">
-            {['accueil', 'à propos', 'compétences', 'projets', 'contact'].map((item, index) => (
+            {['accueil', 'à propos', 'compétences', 'projets', 'services', 'contact'].map((item, index) => (
               <motion.button
                 key={item}
                 initial={{ opacity: 0, y: -20 }}

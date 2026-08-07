@@ -37,8 +37,7 @@ export function SkillsSection() {
       title: 'Database',
       skills: [
         { name: 'MySQL', level: 90, color: 'from-green-500 to-green-700' },
-        { name: 'PostgreSQL', level: 90, color: 'from-green-500 to-green-700' },
-        { name: 'Firebase', level: 85, color: 'from-yellow-400 to-yellow-600' },
+        { name: 'SQLite', level: 82, color: 'from-cyan-400 to-cyan-600' },
       ]
     },
     {
@@ -51,12 +50,23 @@ export function SkillsSection() {
       ]
     },
     {
-      title: 'Tools & Others',
+      title: 'DevOps & Outils',
       skills: [
         { name: 'Git/GitHub', level: 92, color: 'from-gray-400 to-gray-600' },
         { name: 'Docker', level: 82, color: 'from-blue-600 to-blue-800' },
-        { name: 'AWS', level: 75, color: 'from-orange-400 to-orange-600' },
-        { name: 'GraphQL', level: 70, color: 'from-pink-400 to-pink-600' }
+        { name: 'CI/CD', level: 78, color: 'from-orange-400 to-orange-600' },
+        { name: 'Nginx', level: 78, color: 'from-green-400 to-green-600' },
+        { name: 'Play Store', level: 85, color: 'from-emerald-400 to-emerald-600' }
+      ]
+    },
+    {
+      title: 'IA & Outils AI',
+      skills: [
+        { name: 'Claude / Claude Code', level: 92, color: 'from-orange-400 to-orange-600' },
+        { name: 'ChatGPT', level: 90, color: 'from-emerald-400 to-emerald-600' },
+        { name: 'ElevenLabs (voix off)', level: 82, color: 'from-purple-400 to-purple-600' },
+        { name: 'Midjourney / DALL-E', level: 78, color: 'from-pink-400 to-pink-600' },
+        { name: 'Prompt Engineering', level: 88, color: 'from-yellow-400 to-yellow-600' }
       ]
     }
   ]
