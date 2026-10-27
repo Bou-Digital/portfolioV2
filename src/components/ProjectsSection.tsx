@@ -15,6 +15,26 @@ export function ProjectsSection() {
 
   const projects = [
     {
+      title: "Application SOPELEC — Vérification de Factures d'Électricité",
+      company: "SOPEC — Sacré-Coeur 3 VDN, Dakar",
+      description: "Développement d'une application mobile iOS et Android de vérification de factures d'électricité : capture photo/PDF, extraction automatique par IA, modules BT/MT-HT avec détection d'anomalies, authentification OTP et système de quota. Publication App Store via Codemagic CI/CD, backend Spring Boot sécurisé avec Docker secrets.",
+      image: import.meta.env.BASE_URL + "sopec.webp",
+      technologies: ["Flutter", "Spring Boot", "Docker", "Codemagic", "OTP", "CI/CD", "iOS", "Android"],
+      live: "#",
+      featured: true,
+      categories: ['Mobile']
+    },
+    {
+      title: "Menu Numérique TV — Restaurant Chez Fatou Mbour",
+      company: "Restaurant Chez Fatou — Saly Carrefour, Mbour",
+      description: "Application web full-stack d'affichage de menu sur écran TV en salle : défilement automatique des plats avec photos, horloge temps réel, thème personnalisable par couleur de marque. Panel d'administration complet (plats, catégories, prix, upload d'images). Architecture multi-tenant déployée sur Vercel. Fix Samsung Tizen TV : migration vers inline styles pour contourner les limitations CSS modernes (oklch, @layer).",
+      image: import.meta.env.BASE_URL + "chezfatou.jpg",
+      technologies: ["Next.js 16", "React 19", "TypeScript", "Supabase", "Vercel"],
+      live: "#",
+      featured: true,
+      categories: ['SaaS']
+    },
+    {
       title: "Modules Mobile & Backend Walalma",
       company: "Bou Digital (prestation pour Nadji.Bi Sénégal SUARL) — Remote",
       description: "Développement et intégration de 9 modules logiciels sur 3 couches techniques (Angular, Spring Boot, Flutter) sur la plateforme Walalma en production. Filtrage automatique du stock par plateforme, module Mouvement de Stock complet (DTOs, endpoints REST), et 3 modules Flutter avec indicateurs temps réel.",

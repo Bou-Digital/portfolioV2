@@ -32,6 +32,8 @@ export function SkillsSection() {
         { name: 'Spring Boot', level: 90, color: 'from-green-500 to-green-700' },
         { name: 'Node.js', level: 90, color: 'from-green-500 to-green-700' },
         { name: 'Express.js', level: 85, color: 'from-yellow-400 to-yellow-600' },
+        { name: 'PHP', level: 80, color: 'from-purple-400 to-purple-600' },
+        { name: 'Python', level: 82, color: 'from-blue-300 to-blue-500' },
       ]
     },
     {
@@ -151,8 +153,8 @@ export function SkillsSection() {
           <h3 className="text-2xl text-white mb-8">Technologies avec lesquelles je travaille</h3>
           <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
             {[
-              'Flutter(Dart)', 'Html', 'CSS', 'JavaScript', 'Angular', 'Java(Spring Boot)', 
-              'React', 'TypeScript', 'Node.js', 'Next.js', 'Python', 'MySQL', 
+              'Flutter(Dart)', 'Html', 'CSS', 'JavaScript', 'Angular', 'Java(Spring Boot)',
+              'React', 'TypeScript', 'Node.js', 'Next.js', 'Python', 'PHP', 'MySQL',
               'Docker', 'Git', 'Tailwind', 'Firebase', 'Figma'
             ].map((tech, index) => (
               <motion.span
