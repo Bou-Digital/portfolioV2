@@ -19,6 +19,7 @@ export function ProjectsSection() {
       company: "SOPEC — Sacré-Coeur 3 VDN, Dakar",
       description: "Développement d'une application mobile iOS et Android de vérification de factures d'électricité : capture photo/PDF, extraction automatique par IA, modules BT/MT-HT avec détection d'anomalies, authentification OTP et système de quota. Publication App Store via Codemagic CI/CD, backend Spring Boot sécurisé avec Docker secrets.",
       image: import.meta.env.BASE_URL + "sopec.webp",
+      objectPosition: 'top',
       technologies: ["Flutter", "Spring Boot", "Docker", "Codemagic", "OTP", "CI/CD", "iOS", "Android"],
       live: "#",
       featured: true,
@@ -146,12 +147,13 @@ export function ProjectsSection() {
     }
   ]
 
-  const filtered = activeFilter === 'Tous'
-    ? projects
-    : projects.filter(p => p.categories.includes(activeFilter))
+  const featuredProjects = activeFilter === 'Tous'
+    ? projects.filter(p => p.featured)
+    : projects.filter(p => p.featured && p.categories.includes(activeFilter))
 
-  const featuredProjects = activeFilter === 'Tous' ? projects.filter(p => p.featured) : filtered
-  const otherProjects = activeFilter === 'Tous' ? projects.filter(p => !p.featured) : []
+  const otherProjects = activeFilter === 'Tous'
+    ? projects.filter(p => !p.featured)
+    : projects.filter(p => !p.featured && p.categories.includes(activeFilter))
 
   return (
     <section id="projets" className="py-20 bg-gray-900">
@@ -201,7 +203,7 @@ export function ProjectsSection() {
                   <ImageWithFallback
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-84 object-cover transition-transform duration-500 group-hover:scale-90"
+                    className={`w-full h-84 object-cover ${'objectPosition' in project && project.objectPosition === 'top' ? 'object-top' : 'object-center'} transition-transform duration-500 group-hover:scale-90`}
                   />
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300"></div>
                   <div className="absolute top-4 right-4 flex space-x-2">
@@ -247,15 +249,17 @@ export function ProjectsSection() {
         </div>
 
         {/* Other Projects */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mb-8"
-        >
-          <h3 className="text-2xl text-white text-center mb-8">Autres Projets</h3>
-        </motion.div>
+        {otherProjects.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mb-8"
+          >
+            <h3 className="text-2xl text-white text-center mb-8">Autres Projets</h3>
+          </motion.div>
+        )}
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {otherProjects.map((project, index) => (

@@ -41,6 +41,7 @@ export function SkillsSection() {
       skills: [
         { name: 'MySQL', level: 90, color: 'from-green-500 to-green-700' },
         { name: 'SQLite', level: 82, color: 'from-cyan-400 to-cyan-600' },
+        { name: 'Supabase', level: 78, color: 'from-emerald-400 to-emerald-600' },
       ]
     },
     {
@@ -59,7 +60,9 @@ export function SkillsSection() {
         { name: 'Docker', level: 82, color: 'from-blue-600 to-blue-800' },
         { name: 'CI/CD', level: 78, color: 'from-orange-400 to-orange-600' },
         { name: 'Nginx', level: 78, color: 'from-green-400 to-green-600' },
-        { name: 'Play Store', level: 85, color: 'from-emerald-400 to-emerald-600' }
+        { name: 'Play Store', level: 85, color: 'from-emerald-400 to-emerald-600' },
+        { name: 'Vercel', level: 80, color: 'from-gray-300 to-gray-500' },
+        { name: 'Codemagic', level: 75, color: 'from-pink-400 to-pink-600' }
       ]
     },
     {
@@ -70,6 +73,15 @@ export function SkillsSection() {
         { name: 'ElevenLabs (voix off)', level: 82, color: 'from-purple-400 to-purple-600' },
         { name: 'Midjourney / DALL-E', level: 78, color: 'from-pink-400 to-pink-600' },
         { name: 'Prompt Engineering', level: 88, color: 'from-yellow-400 to-yellow-600' }
+      ]
+    },
+    {
+      title: 'Formation & Pédagogie',
+      skills: [
+        { name: 'Animation de cours informatiques', level: 92, color: 'from-teal-400 to-teal-600' },
+        { name: 'Formation en présentiel', level: 90, color: 'from-teal-500 to-teal-700' },
+        { name: 'Création de supports pédagogiques', level: 85, color: 'from-cyan-400 to-cyan-600' },
+        { name: 'Vulgarisation technique (TikTok)', level: 88, color: 'from-cyan-500 to-cyan-700' }
       ]
     }
   ]
