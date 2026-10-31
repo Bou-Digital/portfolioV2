@@ -63,7 +63,7 @@ export function ProjectsSection() {
       description: "SaaS multi-tenant de gestion de restaurants avec isolation complète des données par tenant : menu digital via QR Code, gestion des commandes en temps réel, caisse, stocks et rapports de ventes automatisés. Site vitrine + dashboard + app mobile.",
       image: import.meta.env.BASE_URL + "restaurant-dashboard.png",
       technologies: ["Angular", "Spring Boot", "Flutter", "MySQL"],
-      live: import.meta.env.BASE_URL + "saas/#restauranthub",
+      live: "https://bou-digital.github.io/portfolioV2/saas/#restauranthub",
       featured: true,
       categories: ['SaaS', 'Mobile']
     },
@@ -73,7 +73,7 @@ export function ProjectsSection() {
       description: "SaaS B2B/B2C adapté à 8 secteurs d'activité : caisse (POS) complète, catalogue QR Code, analytics financier (bénéfice net, taux de marge, top produits), architecture multi-boutiques avec suivi des abonnements, App client PWA et App livreur.",
       image: import.meta.env.BASE_URL + "boutique-dashboard.png",
       technologies: ["Angular", "TypeScript", "Tailwind CSS", "Spring Boot", "MySQL", "Docker", "PWA"],
-      live: import.meta.env.BASE_URL + "saas/#boutique",
+      live: "https://bou-digital.github.io/portfolioV2/saas/#boutique",
       featured: true,
       categories: ['SaaS']
     },

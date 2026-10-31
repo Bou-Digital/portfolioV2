@@ -1,377 +1,1005 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mes SaaS – Bou Digital</title>
-<meta name="description" content="RestaurantHub et Boutique Gestion : deux logiciels de gestion conçus par Bou Digital pour les restaurants et les commerces d'Afrique de l'Ouest. Démo sur demande.">
-<meta property="og:title" content="Mes SaaS – Bou Digital">
-<meta property="og:description" content="Logiciels de gestion pour restaurants et commerces : caisse, commandes, stock, menu QR code, rentabilité. En FCFA et en français.">
-<meta property="og:image" content="images/rh-dashboard.webp">
-<meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
-<style>
-/* Page « Mes SaaS » du portfolio — fond nuit, accents vert et violet du portfolio, un bloc par produit avec galerie et lightbox */
-:root{
-  --nuit:#0b1120; --nuit-2:#111a2e; --carte:#16213a; --ligne:#24314f;
-  --texte:#e6ecf5; --doux:#9fb0c9; --vert:#10b981; --vert-2:#34d399; --violet:#a855f7; --rose:#ec4899;
-  --resto:#ef4444; --boutique:#10b981;
-  --font:"Plus Jakarta Sans","Segoe UI",Arial,sans-serif;
-}
-*{box-sizing:border-box}
-[hidden]{display:none!important}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--nuit);color:var(--texte);font-family:var(--font);font-size:16px;line-height:1.6;overflow-x:hidden}
-a{color:inherit}
-img{max-width:100%;display:block}
-.inner{max-width:1120px;margin:0 auto;padding-inline:max(16px,env(safe-area-inset-left,0px))}
-h1,h2,h3{margin:0;line-height:1.12;text-wrap:balance}
-h2{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800}
-section{padding-block:72px}
-.eyebrow{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--vert-2);margin-bottom:10px}
-.lead{color:var(--doux);max-width:62ch;margin:12px 0 0;font-size:1.05rem}
-.grad{background:linear-gradient(90deg,var(--vert-2),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bou Digital — Logiciels de gestion pour commerces</title>
+  <meta name="description" content="Bou Digital crée des logiciels de gestion simples et puissants pour les restaurants et boutiques d'Afrique de l'Ouest. RestaurantHub et Boutique Gestion." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* En-tête */
-header{position:sticky;top:0;z-index:20;background:rgba(11,17,32,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--ligne)}
-.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:12px}
-.back{text-decoration:none;font-weight:700;color:var(--doux);display:inline-flex;gap:8px;align-items:center}
-.back:hover{color:var(--texte)}
-.links{display:flex;gap:6px}
-.links a{text-decoration:none;font-weight:600;font-size:.92rem;padding:8px 12px;border-radius:8px;color:var(--doux)}
-.links a:hover{color:var(--texte);background:var(--carte)}
-@media (max-width:720px){.links{display:none}}
+    :root {
+      --bg: #080b14;
+      --bg2: #0d1120;
+      --card: #111827;
+      --card2: #0f1623;
+      --gold: #3b82f6;
+      --gold2: #2563eb;
+      --green: #22c55e;
+      --red: #ef4444;
+      --text: #f0f4ff;
+      --muted: #8896b3;
+      --border: rgba(59,130,246,0.22);
+      --border2: rgba(255,255,255,0.08);
+    }
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:700;border:0;border-radius:12px;padding:13px 20px;text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
-.btn:hover{transform:translateY(-2px)}
-.btn-v{background:var(--vert);color:#04150f;box-shadow:0 10px 24px rgba(16,185,129,.3)}
-.btn-o{background:transparent;color:var(--texte);border:1.5px solid var(--ligne)}
-.btn-o:hover{border-color:var(--vert-2)}
-.btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--vert-2);outline-offset:2px}
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-/* Héros */
-.hero{position:relative;overflow:hidden;padding-block:80px 64px}
-.hero::before{content:"";position:absolute;inset:-30% -10% auto auto;width:620px;height:620px;background:radial-gradient(circle,rgba(168,85,247,.25),transparent 65%);pointer-events:none}
-.hero::after{content:"";position:absolute;inset:auto auto -40% -10%;width:620px;height:620px;background:radial-gradient(circle,rgba(16,185,129,.2),transparent 65%);pointer-events:none}
-.hero .inner{position:relative;z-index:1}
-.hero h1{font-size:clamp(2.1rem,5.4vw,3.6rem);font-weight:800;max-width:18ch}
-.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.status{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ligne);background:var(--nuit-2);border-radius:999px;padding:6px 14px;font-size:.84rem;font-weight:600;color:var(--doux);margin-bottom:22px}
-.status i{width:8px;height:8px;border-radius:50%;background:var(--vert-2)}
-.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:46px}
-.fact{background:var(--nuit-2);border:1px solid var(--ligne);border-radius:16px;padding:18px}
-.fact b{display:block;font-size:1.6rem;font-weight:800}
-.fact span{color:var(--doux);font-size:.92rem}
-@media (max-width:820px){.facts{grid-template-columns:1fr 1fr}}
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(8,11,20,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border2);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 4px;
+    }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-name { font-weight: 800; font-size: 15px; color: var(--text); }
+    .logo-sub { font-size: 10px; color: var(--muted); font-weight: 500; }
 
-/* Bloc produit */
-.prod{border-top:1px solid var(--ligne)}
-.prod-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px}
-.badge .logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-weight:800;color:#fff}
-.badge small{display:block;color:var(--doux);font-size:.8rem;font-weight:600}
-.badge b{font-size:1.15rem}
-.prod.r .logo{background:linear-gradient(135deg,#ef4444,#b91c1c)}
-.prod.b .logo{background:linear-gradient(135deg,#10b981,#047857)}
-.shot{border-radius:14px;overflow:hidden;border:1px solid var(--ligne);box-shadow:0 30px 60px rgba(0,0,0,.45);cursor:zoom-in;background:#fff}
-.shot img{width:100%;height:auto}
-@media (max-width:860px){.prod-head{grid-template-columns:1fr}}
+    nav { display: flex; align-items: center; gap: 4px; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    nav a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
 
-.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
-.pillar{background:var(--carte);border:1px solid var(--ligne);border-radius:16px;padding:20px}
-.pillar .n{font-weight:800;font-size:.85rem;color:var(--vert-2)}
-.prod.r .pillar .n{color:#f87171}
-.pillar h3{font-size:1.08rem;margin:6px 0 6px}
-.pillar p{margin:0;color:var(--doux);font-size:.94rem}
-@media (max-width:860px){.pillars{grid-template-columns:1fr}}
+    .btn-wa-header {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--green);
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 8px;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+      flex-shrink: 0;
+    }
+    .btn-wa-header:hover { background: #16a34a; transform: translateY(-1px); }
+    .btn-wa-header svg { width: 15px; height: 15px; fill: #fff; flex-shrink: 0; }
 
-.mods{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 28px;margin:34px 0 0;padding:0;list-style:none}
-.mods li{display:flex;gap:10px;align-items:flex-start;color:var(--texte)}
-.mods li::before{content:"";flex:none;width:20px;height:20px;margin-top:3px;border-radius:6px;background:var(--vert) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2304150f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12l5 5L20 7'/></svg>") center/14px no-repeat}
-.prod.r .mods li::before{background-color:#f87171}
-.mods li span{color:var(--doux)}
-@media (max-width:720px){.mods{grid-template-columns:1fr}}
+    /* hamburger */
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text); margin: 4px 0; border-radius: 2px;
+      transition: all 0.25s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border2);
+      padding: 12px 24px 20px;
+      z-index: 99;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a {
+      display: block; color: var(--text); text-decoration: none;
+      font-size: 15px; font-weight: 500; padding: 12px 0;
+      border-bottom: 1px solid var(--border2);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
 
-/* Galerie */
-.gal-title{font-size:1.15rem;margin:48px 0 14px}
-.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.thumb{font:inherit;color:inherit;text-align:left;padding:0;border:1px solid var(--ligne);border-radius:12px;overflow:hidden;background:var(--carte);cursor:zoom-in;transition:transform .2s,border-color .2s}
-.thumb:hover{transform:translateY(-3px);border-color:var(--vert-2)}
-.thumb img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;background:#fff}
-.thumb span{display:block;padding:8px 10px;font-size:.84rem;font-weight:600;color:var(--doux)}
-@media (max-width:860px){.gallery{grid-template-columns:1fr 1fr}}
+    /* ── HERO ── */
+    .hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,166,35,0.12);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      letter-spacing: 0.3px;
+    }
+    .badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #000;
+      font-weight: 800;
+      font-size: 14px;
+      padding: 13px 26px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: 1px solid var(--border2);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      padding: 13px 26px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(245,166,35,0.06); transform: translateY(-2px); }
 
-.video{margin-top:36px;border:1px dashed var(--ligne);border-radius:16px;overflow:hidden;background:var(--nuit-2)}
-.video video{width:100%;display:block;background:#000}
+    /* ── PRODUCT DIVIDER ── */
+    .section-label {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section-label-inner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+    .section-label-inner::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border2);
+    }
+    .product-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,166,35,0.1);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 6px;
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
 
-/* Secteurs */
-.sectors{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}
-.sector{background:var(--carte);border:1px solid var(--ligne);border-radius:14px;padding:16px}
-.sector b{display:block}
-.sector span{color:var(--doux);font-size:.88rem}
-@media (max-width:820px){.sectors{grid-template-columns:1fr 1fr}}
+    /* ── PRODUCT SECTION ── */
+    .product-section {
+      padding: 80px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .product-section + .product-section { padding-top: 20px; }
 
-/* Formules */
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
-.plan{background:var(--carte);border:1px solid var(--ligne);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:10px}
-.plan.star{border-color:var(--vert);box-shadow:0 0 0 1px var(--vert) inset}
-.plan h3{font-size:1.05rem}
-.plan .price{font-size:1.8rem;font-weight:800}
-.plan .price small{font-size:.9rem;color:var(--doux);font-weight:600}
-.plan ul{margin:0;padding-left:18px;color:var(--doux);font-size:.94rem}
-@media (max-width:860px){.plans{grid-template-columns:1fr}}
+    .product-hero {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .product-hero .accroche {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .product-hero h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .product-hero h2 .highlight { color: var(--gold); }
+    .product-hero .subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
 
-.hw{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.hw span{background:var(--nuit-2);border:1px solid var(--ligne);border-radius:999px;padding:7px 14px;font-size:.88rem;font-weight:600;color:var(--doux)}
+    /* pain points */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 64px;
+    }
+    .pain-card {
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: 16px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s;
+    }
+    .pain-card:hover { border-color: var(--border); }
+    .pain-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .pain-card.stock::before { background: linear-gradient(90deg, #22c55e, #16a34a); }
+    .pain-card.caisse::before { background: linear-gradient(90deg, var(--gold), var(--gold2)); }
+    .pain-card.ca::before { background: linear-gradient(90deg, #3b82f6, #1d4ed8); }
 
-.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.stack span{font-size:.82rem;font-weight:700;border-radius:8px;padding:5px 10px;background:rgba(168,85,247,.12);color:#d8b4fe;border:1px solid rgba(168,85,247,.3)}
+    .pain-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      font-size: 20px;
+    }
+    .pain-card.stock .pain-icon { background: rgba(34,197,94,0.12); }
+    .pain-card.caisse .pain-icon { background: rgba(245,166,35,0.12); }
+    .pain-card.ca .pain-icon { background: rgba(59,130,246,0.12); }
 
-/* Étapes */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:34px;counter-reset:s}
-.step{background:var(--carte);border:1px solid var(--ligne);border-radius:16px;padding:20px;position:relative}
-.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--vert),var(--violet));color:#fff;font-weight:800;margin-bottom:12px}
-.step h3{font-size:1.02rem;margin-bottom:6px}
-.step p{margin:0;color:var(--doux);font-size:.93rem}
-@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
-@media (max-width:480px){.steps{grid-template-columns:1fr}}
+    .pain-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .pain-quote {
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 16px;
+      line-height: 1.55;
+      border-left: 2px solid var(--border2);
+      padding-left: 12px;
+    }
+    .pain-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .pain-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12.5px;
+      color: #c4cfe0;
+      line-height: 1.5;
+    }
+    .check {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 9px;
+      font-weight: 900;
+    }
+    .pain-card.stock .check { background: rgba(34,197,94,0.2); color: #22c55e; }
+    .pain-card.caisse .check { background: rgba(245,166,35,0.2); color: var(--gold); }
+    .pain-card.ca .check { background: rgba(59,130,246,0.2); color: #60a5fa; }
 
-/* Appel final */
-.cta-box{background:linear-gradient(135deg,rgba(16,185,129,.18),rgba(168,85,247,.18));border:1px solid var(--ligne);border-radius:24px;padding:40px;text-align:center}
-.cta-box .ctas{justify-content:center}
-footer{border-top:1px solid var(--ligne);color:var(--doux);font-size:.88rem;text-align:center;padding-block:26px}
+    /* argument fort */
+    .argument-block {
+      background: linear-gradient(135deg, rgba(245,166,35,0.08) 0%, rgba(245,166,35,0.02) 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 36px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 64px;
+      flex-wrap: wrap;
+    }
+    .argument-icon {
+      font-size: 40px;
+      flex-shrink: 0;
+    }
+    .argument-text h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .argument-text h3 em { color: var(--gold); font-style: normal; }
+    .argument-text p { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
-/* Lightbox */
-.lb{position:fixed;inset:0;z-index:50;background:rgba(3,6,14,.92);display:grid;place-items:center;padding:20px}
-.lb figure{margin:0;max-width:1200px;width:100%}
-.lb img{width:100%;max-height:80vh;object-fit:contain;border-radius:10px;background:#fff}
-.lb figcaption{color:var(--doux);text-align:center;margin-top:10px;font-weight:600}
-.lb button{position:absolute;font:inherit;font-size:1.6rem;width:46px;height:46px;border-radius:50%;border:1px solid var(--ligne);background:var(--carte);color:var(--texte);cursor:pointer}
-.lb .x{top:16px;right:16px}
-.lb .p{left:12px;top:50%;translate:0 -50%}
-.lb .nx{right:12px;top:50%;translate:0 -50%}
+    /* features grid */
+    .features-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 64px;
+    }
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover { border-color: var(--border); transform: translateY(-2px); }
+    .feature-emoji { font-size: 22px; }
+    .feature-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.35;
+    }
+    .feature-desc { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
 
-.js .rv{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
-.js .rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.js .rv{opacity:1;transform:none}}
-</style>
+    /* screenshots gallery */
+    .gallery-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .gallery-item {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border2);
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+      aspect-ratio: 16/10;
+      background: var(--card);
+    }
+    .gallery-item:hover { border-color: var(--gold); transform: scale(1.02); }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    /* CTA block */
+    .cta-block {
+      background: var(--card2);
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      padding: 40px 36px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .cta-block h3 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .cta-block h3 span { color: var(--gold); }
+    .cta-block p {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-bottom: 28px;
+      line-height: 1.65;
+    }
+    .cta-badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .cta-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border2);
+      color: var(--muted);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+    }
+    .btn-wa-big {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green);
+      color: #fff;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 15px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-wa-big:hover { background: #16a34a; transform: translateY(-2px); }
+    .btn-wa-big svg { width: 20px; height: 20px; fill: #fff; }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      border-top: 1px solid var(--border2);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border2);
+      padding: 48px 24px 32px;
+      margin-top: 80px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      margin-bottom: 36px;
+      align-items: start;
+      flex-wrap: wrap;
+    }
+    .footer-brand .logo-name { font-size: 18px; margin-bottom: 6px; }
+    .footer-brand p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+      max-width: 360px;
+      margin-top: 10px;
+    }
+    .footer-contact { display: flex; flex-direction: column; gap: 10px; text-align: right; }
+    .footer-contact a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .footer-contact a:hover { color: var(--gold); }
+    .footer-contact .wa-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      justify-content: flex-end;
+      color: var(--green);
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .footer-contact .wa-link svg { width: 16px; height: 16px; fill: var(--green); }
+    .payment-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: flex-end;
+      margin-top: 4px;
+    }
+    .payment-badge {
+      background: var(--card);
+      border: 1px solid var(--border2);
+      color: var(--muted);
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 6px;
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--border2);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-bottom p { color: var(--muted); font-size: 12px; }
+    .footer-bottom a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .footer-bottom a:hover { color: var(--text); }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: min(90vw, 1000px);
+      max-height: 85vh;
+      border-radius: 12px;
+      object-fit: contain;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      opacity: 0.7;
+      line-height: 1;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav, .btn-wa-header { display: none; }
+      .hamburger { display: block; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-contact { text-align: left; }
+      .footer-contact .wa-link { justify-content: flex-start; }
+      .payment-row { justify-content: flex-start; }
+      .argument-block { flex-direction: column; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .pain-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
 </head>
 <body>
-<script>document.documentElement.classList.add("js")</script>
 
+<!-- HEADER -->
 <header>
-  <div class="inner nav">
-    <a class="back" href="../">← Retour au portfolio</a>
-    <nav class="links" aria-label="Navigation">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon"><img src="logo.png" alt="Bou Digital" /></div>
+      <div class="logo-text">
+        <span class="logo-name">Bou Digital</span>
+        <span class="logo-sub">Mbour, Sénégal</span>
+      </div>
+    </a>
+
+    <nav>
       <a href="#restauranthub">RestaurantHub</a>
       <a href="#boutique">Boutique Gestion</a>
-      <a href="#methode">Démarrage</a>
-      <a href="#contact">Contact</a>
+      <a href="#footer">Contact</a>
     </nav>
+
+    <a href="https://wa.me/221778172827" target="_blank" rel="noopener" class="btn-wa-header">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      WhatsApp
+    </a>
+
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
-<main>
-  <section class="hero">
-    <div class="inner">
-      <div class="status"><i></i>Produits terminés · démo sur demande</div>
-      <h1>Des logiciels de gestion pensés pour les <span class="grad">commerces d'Afrique de l'Ouest</span></h1>
-      <p class="lead">J'ai conçu et développé seul deux SaaS multi-établissements, en FCFA et en français : RestaurantHub pour les restaurants, et Boutique Gestion pour les boutiques et les grossistes. Je les installe aux couleurs de chaque client, puis je forme son équipe.</p>
-      <div class="ctas">
-        <a class="btn btn-v" href="https://wa.me/221778172827?text=Bonjour%20Bou%2C%20je%20souhaite%20une%20d%C3%A9mo%20de%20vos%20logiciels%20de%20gestion." target="_blank" rel="noopener">Demander une démo</a>
-        <a class="btn btn-o" href="#restauranthub">Voir les produits</a>
-      </div>
-      <div class="facts">
-        <div class="fact rv"><b>2</b><span>SaaS conçus et développés de A à Z</span></div>
-        <div class="fact rv"><b>Multi-tenant</b><span>données isolées pour chaque établissement</span></div>
-        <div class="fact rv"><b>FCFA</b><span>en français, pensé pour le terrain</span></div>
-        <div class="fact rv"><b>1 mois</b><span>pour livrer Boutique Gestion</span></div>
-      </div>
-    </div>
-  </section>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#restauranthub" onclick="closeMenu()">RestaurantHub</a>
+  <a href="#boutique" onclick="closeMenu()">Boutique Gestion</a>
+  <a href="#footer" onclick="closeMenu()">Contact</a>
+  <a href="https://wa.me/221778172827" target="_blank" rel="noopener" style="color: var(--green);">
+    WhatsApp — +221 77 817 28 27
+  </a>
+</div>
 
-  <!-- RestaurantHub -->
-  <section class="prod r" id="restauranthub">
-    <div class="inner">
-      <div class="prod-head">
-        <div class="rv">
-          <div class="badge"><span class="logo">RH</span><span><b>RestaurantHub</b><small>Restaurants, hôtels et bars</small></span></div>
-          <h2>La présence digitale complète d'un restaurant, avec sa gestion</h2>
-          <p class="lead">La plupart des restaurants n'ont ni site, ni menu digital, et gèrent leurs commandes sur papier ou sur WhatsApp. RestaurantHub leur donne les trois en un seul outil.</p>
-        </div>
-        <button class="shot rv" type="button" data-g="rh" data-i="0" aria-label="Agrandir le tableau de bord RestaurantHub"><img src="images/rh-dashboard.webp" alt="Tableau de bord RestaurantHub : chiffre d'affaires du jour, marge et commandes" width="1200" height="642" loading="lazy"></button>
-      </div>
+<!-- HERO -->
+<section class="hero">
+  <span class="badge">Bou Digital — Mbour, Sénégal</span>
+  <h1>Des logiciels de gestion pensés pour <span>l'Afrique de l'Ouest</span></h1>
+  <p>Gérez votre restaurant ou votre boutique depuis votre téléphone. Commandes, stock, caisse et statistiques — en temps réel, accessible partout.</p>
+  <div class="hero-btns">
+    <a href="#restauranthub" class="btn-primary">RestaurantHub →</a>
+    <a href="#boutique" class="btn-outline">Boutique Gestion →</a>
+  </div>
+</section>
 
-      <div class="pillars">
-        <div class="pillar rv"><div class="n">01</div><h3>Site de commande en ligne</h3><p>Chaque restaurant a son site aux couleurs de sa marque. Les clients commandent sur place, à emporter ou en livraison, et suivent leur commande en temps réel.</p></div>
-        <div class="pillar rv"><div class="n">02</div><h3>Menu par QR code et écran TV</h3><p>Un menu toujours à jour, scanné à table ou partagé sur les réseaux. Sur un écran TV, les plats défilent seuls, sans aucune manipulation.</p></div>
-        <div class="pillar rv"><div class="n">03</div><h3>Tableau de bord de gestion</h3><p>Commandes, tables, équipe, caisse, stock, dépenses et bénéfice net, réunis dans une seule interface.</p></div>
-      </div>
+<!-- ══════════════ RESTAURANTHUB ══════════════ -->
+<div id="restauranthub" class="section-label" style="padding-top: 40px;">
+  <div class="section-label-inner">
+    <span class="product-tag">🍽️ RestaurantHub</span>
+  </div>
+</div>
 
-      <ul class="mods">
-        <li><div><b>Caisse et sessions</b> <span>· ouverture et clôture par service, rapport Z, écart de caisse, ticket 80 mm</span></div></li>
-        <li><div><b>Commandes en temps réel</b> <span>· en attente, en préparation, prête, livrée, payée</span></div></li>
-        <li><div><b>Stock et dépenses</b> <span>· entrées, sorties, pertes, alertes de seuil, dépenses récurrentes</span></div></li>
-        <li><div><b>Bénéfice net</b> <span>· revenus moins dépenses, calculé automatiquement</span></div></li>
-        <li><div><b>Équipe par rôles</b> <span>· administrateur, manager, serveur, cuisinier</span></div></li>
-        <li><div><b>Fidélité client</b> <span>· points et 4 paliers, de Bronze à Diamant</span></div></li>
-        <li><div><b>Multi-restaurants</b> <span>· chaque établissement dans son espace sécurisé</span></div></li>
-        <li><div><b>Espèces, carte, Mobile Money</b> <span>· avec calcul automatique de la monnaie</span></div></li>
+<section class="product-section" style="padding-top: 0;">
+  <!-- Hero produit -->
+  <div class="product-hero">
+    <p class="accroche">⚠ Vous perdez de l'argent sans le savoir ?</p>
+    <h2>REPRENEZ LE <span class="highlight">CONTRÔLE TOTAL</span><br>DE VOTRE RESTAURANT</h2>
+    <p class="subtitle">Stock, caisse, dépenses… Tout est enregistré, analysé et visible depuis votre téléphone, en temps réel.</p>
+  </div>
+
+  <!-- Pain points -->
+  <div class="pain-grid">
+    <!-- STOCK -->
+    <div class="pain-card stock">
+      <div class="pain-icon">📦</div>
+      <div class="pain-title">Stock</div>
+      <div class="pain-quote">"Mon stock disparaît, je ne sais pas où ça va."</div>
+      <ul class="pain-list">
+        <li><span class="check">✓</span>Plus rien ne disparaît sans explication</li>
+        <li><span class="check">✓</span>Chaque entrée, sortie et perte est tracée</li>
+        <li><span class="check">✓</span>Alertes avant rupture de stock</li>
+        <li><span class="check">✓</span>Déduction automatique à chaque commande</li>
+        <li><span class="check">✓</span>Valeur du stock visible en FCFA</li>
       </ul>
-
-      <h3 class="gal-title">Captures d'écran</h3>
-      <div class="gallery" data-gallery="rh">
-        <button class="thumb rv" type="button" data-g="rh" data-i="0"><img src="images/rh-dashboard.webp" alt="" loading="lazy"><span>Tableau de bord</span></button>
-        <button class="thumb rv" type="button" data-g="rh" data-i="1"><img src="images/rh-caisse.webp" alt="" loading="lazy"><span>Caisse et prise de commande</span></button>
-        <button class="thumb rv" type="button" data-g="rh" data-i="2"><img src="images/rh-commandes.webp" alt="" loading="lazy"><span>Suivi des commandes</span></button>
-        <button class="thumb rv" type="button" data-g="rh" data-i="3"><img src="images/rh-analytique.webp" alt="" loading="lazy"><span>Analytique</span></button>
-        <button class="thumb rv" type="button" data-g="rh" data-i="4"><img src="images/rh-site-client.webp" alt="" loading="lazy"><span>Site client du restaurant</span></button>
-        <button class="thumb rv" type="button" data-g="rh" data-i="5"><img src="images/rh-ecran-tv.webp" alt="" loading="lazy"><span>Menu sur écran TV</span></button>
-        <button class="thumb rv" type="button" data-g="rh" data-i="6"><img src="images/rh-personnel.webp" alt="" loading="lazy"><span>Gestion du personnel</span></button>
-        <button class="thumb rv" type="button" data-g="rh" data-i="7"><img src="images/rh-super-admin.webp" alt="" loading="lazy"><span>Vue multi-restaurants</span></button>
-      </div>
-
-      <!-- Vidéo : déposez la vidéo dans videos/restauranthub-demo.mp4 (le bloc se cache tout seul si le fichier manque) -->
-      <div class="video rv" data-video>
-        <video controls preload="metadata" poster="images/rh-dashboard.webp">
-          <source src="videos/restauranthub-demo.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <p class="lead" style="margin-top:34px"><b style="color:var(--texte)">Matériel en option, installé et configuré :</b></p>
-      <div class="hw"><span>Tablette Samsung Galaxy Tab S6 Lite</span><span>Imprimante tickets Epson 80 mm</span><span>Ordinateur tout-en-un HP 24"</span><span>Routeur Wi-Fi</span></div>
-      <div class="stack"><span>Angular</span><span>Spring Boot</span><span>WebSocket</span><span>JWT</span><span>MySQL / PostgreSQL</span><span>Flutter</span></div>
     </div>
-  </section>
 
-  <!-- Boutique Gestion -->
-  <section class="prod b" id="boutique">
-    <div class="inner">
-      <div class="prod-head">
-        <div class="rv">
-          <div class="badge"><span class="logo">BG</span><span><b>Boutique Gestion</b><small>Boutiques, grossistes et détaillants</small></span></div>
-          <h2>Toute la gestion commerciale, de l'achat à la livraison</h2>
-          <p class="lead">Beaucoup de commerçants tiennent encore leurs ventes, leurs stocks et leurs crédits clients dans des carnets. Boutique Gestion leur montre enfin leur bénéfice réel, et la valeur de leur stock.</p>
-        </div>
-        <button class="shot rv" type="button" data-g="bg" data-i="0" aria-label="Agrandir le tableau de bord Boutique Gestion"><img src="images/bg-dashboard.webp" alt="Tableau de bord financier Boutique Gestion : chiffre d'affaires, bénéfice net et valeur du stock" width="1200" height="652" loading="lazy"></button>
-      </div>
-
-      <div class="pillars">
-        <div class="pillar rv"><div class="n">01</div><h3>Caisse et ventes</h3><p>Ventes au comptoir avec calcul de la monnaie, vente au kilo ou au litre, ticket thermique 80 mm.</p></div>
-        <div class="pillar rv"><div class="n">02</div><h3>Commandes B2B et livraisons</h3><p>Bons de commande, du brouillon à la livraison, tournées des livreurs et bons de livraison en PDF.</p></div>
-        <div class="pillar rv"><div class="n">03</div><h3>Catalogue en ligne par QR code</h3><p>Les clients scannent le QR code de la boutique, parcourent les produits et commandent depuis leur téléphone.</p></div>
-      </div>
-
-      <ul class="mods">
-        <li><div><b>Stock et entrepôts</b> <span>· alertes de rupture, mouvements tracés, transferts</span></div></li>
-        <li><div><b>Achats et fournisseurs</b> <span>· cycle d'achat complet</span></div></li>
-        <li><div><b>Rentabilité</b> <span>· bénéfice net, taux de marge, meilleurs produits</span></div></li>
-        <li><div><b>Application client et application livreur</b> <span>· incluses</span></div></li>
-        <li><div><b>Multi-boutiques</b> <span>· gestion centralisée et suivi des abonnements</span></div></li>
-        <li><div><b>Rapports PDF</b> <span>· ventes, stock et activité</span></div></li>
+    <!-- CAISSE -->
+    <div class="pain-card caisse">
+      <div class="pain-icon">💰</div>
+      <div class="pain-title">Caisse</div>
+      <div class="pain-quote">"Je ne peux pas vérifier quand je suis absent."</div>
+      <ul class="pain-list">
+        <li><span class="check">✓</span>Chaque commande horodatée</li>
+        <li><span class="check">✓</span>Les écarts sont détectés automatiquement</li>
+        <li><span class="check">✓</span>Remises et offerts visibles par admin</li>
+        <li><span class="check">✓</span>Rapport de caisse en 1 clic</li>
+        <li><span class="check">✓</span>Wave, Orange Money, espèces</li>
       </ul>
-
-      <h3 class="gal-title">Adapté à 8 secteurs</h3>
-      <div class="sectors">
-        <div class="sector rv"><b>Alimentation générale</b><span>Épicerie, supérette</span></div>
-        <div class="sector rv"><b>Quincaillerie</b><span>Outillage, matériaux</span></div>
-        <div class="sector rv"><b>Pièces détachées</b><span>Auto, moto, camion</span></div>
-        <div class="sector rv"><b>Boucherie</b><span>Viandes, poissons, volaille</span></div>
-        <div class="sector rv"><b>Prêt-à-porter</b><span>Vêtements, chaussures</span></div>
-        <div class="sector rv"><b>Pharmacie et parapharmacie</b><span>Cosmétiques, produits de soin</span></div>
-        <div class="sector rv"><b>Électronique</b><span>Téléphones, informatique</span></div>
-        <div class="sector rv"><b>Autre commerce</b><span>Tout commerce de détail</span></div>
-      </div>
-
-      <h3 class="gal-title">Captures d'écran</h3>
-      <div class="gallery" data-gallery="bg">
-        <button class="thumb rv" type="button" data-g="bg" data-i="0"><img src="images/bg-dashboard.webp" alt="" loading="lazy"><span>Tableau de bord financier</span></button>
-        <button class="thumb rv" type="button" data-g="bg" data-i="1"><img src="images/bg-commandes.webp" alt="" loading="lazy"><span>Commandes B2B</span></button>
-        <button class="thumb rv" type="button" data-g="bg" data-i="2"><img src="images/bg-catalogue-qr.webp" alt="" loading="lazy"><span>Catalogue et QR code</span></button>
-        <button class="thumb rv" type="button" data-g="bg" data-i="3"><img src="images/bg-app-mobile.webp" alt="" loading="lazy" style="object-fit:contain"><span>Application client mobile</span></button>
-      </div>
-
-      <!-- Vidéo : déposez la vidéo dans videos/boutique-gestion-demo.mp4 -->
-      <div class="video rv" data-video>
-        <video controls preload="metadata" poster="images/bg-dashboard.webp">
-          <source src="videos/boutique-gestion-demo.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <h3 class="gal-title">Formules</h3>
-      <div class="plans">
-        <div class="plan rv"><h3>Boutique de quartier</h3><div class="price">8 000 <small>FCFA / mois</small></div><ul><li>1 boutique, 3 utilisateurs</li><li>Jusqu'à 500 produits</li><li>Ventes, stock, vente au détail</li><li>Ticket thermique et rapport PDF</li></ul></div>
-        <div class="plan star rv"><h3>Alimentation générale</h3><div class="price">25 000 <small>FCFA / mois</small></div><ul><li>1 boutique, 10 utilisateurs</li><li>Jusqu'à 5 000 produits</li><li>Achats et fournisseurs</li><li>Commandes B2B et livraisons</li><li>Analytique avancée</li></ul></div>
-        <div class="plan rv"><h3>Grand commerçant</h3><div class="price">Sur devis</div><ul><li>Multi-boutiques et multi-entrepôts</li><li>Produits et utilisateurs illimités</li><li>Facturation PDF, B2B complet</li><li>Formation dédiée</li></ul></div>
-      </div>
-      <div class="stack"><span>Angular</span><span>Tailwind CSS</span><span>Spring Boot 3</span><span>Java 17</span><span>MySQL 8</span><span>Docker</span><span>PWA</span></div>
     </div>
-  </section>
 
-  <section id="methode" class="prod">
-    <div class="inner">
-      <div class="eyebrow">Démarrage</div>
-      <h2>Opérationnel en quelques jours</h2>
-      <div class="steps">
-        <div class="step rv"><h3>Démo</h3><p>Je vous montre le logiciel sur vos propres cas : vos plats, vos produits, votre façon de vendre.</p></div>
-        <div class="step rv"><h3>Installation</h3><p>Votre espace à vos couleurs, avec votre menu ou votre catalogue saisi.</p></div>
-        <div class="step rv"><h3>Formation</h3><p>Votre équipe apprend à s'en servir sur place, à Mbour, à Saly ou dans votre ville.</p></div>
-        <div class="step rv"><h3>Suivi</h3><p>Mises à jour, assistance sur WhatsApp et nouvelles fonctions selon vos besoins.</p></div>
-      </div>
+    <!-- CA & DÉPENSES -->
+    <div class="pain-card ca">
+      <div class="pain-icon">📊</div>
+      <div class="pain-title">CA & Dépenses</div>
+      <div class="pain-quote">"Je ne sais pas si mon restaurant est rentable."</div>
+      <ul class="pain-list">
+        <li><span class="check">✓</span>Chiffre d'affaires en temps réel</li>
+        <li><span class="check">✓</span>Dépenses classées automatiquement</li>
+        <li><span class="check">✓</span>Profit net calculé instantanément</li>
+        <li><span class="check">✓</span>Historique sur 12 mois</li>
+        <li><span class="check">✓</span>Accessible depuis votre téléphone</li>
+      </ul>
     </div>
-  </section>
+  </div>
 
-  <section id="contact">
-    <div class="inner">
-      <div class="cta-box rv">
-        <h2>Voir le logiciel sur votre activité</h2>
-        <p class="lead" style="margin-inline:auto">Une démonstration de 20 minutes, en ligne ou dans votre établissement. Sans engagement.</p>
-        <div class="ctas">
-          <a class="btn btn-v" href="https://wa.me/221778172827?text=Bonjour%20Bou%2C%20je%20souhaite%20une%20d%C3%A9mo%20de%20vos%20logiciels%20de%20gestion." target="_blank" rel="noopener">WhatsApp · 77 817 28 27</a>
-          <a class="btn btn-o" href="mailto:boucountaba@gmail.com?subject=D%C3%A9mo%20logiciel%20de%20gestion">boucountaba@gmail.com</a>
+  <!-- Argument fort -->
+  <div class="argument-block">
+    <div class="argument-icon">📱</div>
+    <div class="argument-text">
+      <h3>Vous n'avez plus besoin d'être au restaurant <em>pour savoir ce qui s'y passe.</em></h3>
+      <p>Commandes, stock, argent encaissé — tout sur votre téléphone, 24h/24. Surveillez votre établissement de n'importe où.</p>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="features-title">Un outil complet pour votre établissement</div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-emoji">🍽️</div>
+      <div class="feature-name">Commandes temps réel</div>
+      <div class="feature-desc">Cuisine notifiée instantanément à chaque commande</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">📱</div>
+      <div class="feature-name">Menu Digital QR Code</div>
+      <div class="feature-desc">Le client commande directement depuis son téléphone</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">🗺️</div>
+      <div class="feature-name">Plan de salle en direct</div>
+      <div class="feature-desc">Tables libres/occupées visibles en temps réel</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">👥</div>
+      <div class="feature-name">Gestion du personnel</div>
+      <div class="feature-desc">Chacun accède uniquement à son espace</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">📈</div>
+      <div class="feature-name">Statistiques & Rapports</div>
+      <div class="feature-desc">Plats vendus, heures de pointe, tendances</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">💻</div>
+      <div class="feature-name">Multi-appareils</div>
+      <div class="feature-desc">Tablette, mobile, PC — sans installation</div>
+    </div>
+  </div>
+
+  <!-- Screenshots -->
+  <div class="gallery-title">Aperçu de l'application</div>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox('images/rh-dashboard.webp')">
+      <img src="images/rh-dashboard.webp" alt="RestaurantHub — Tableau de bord" loading="lazy" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/rh-caisse.webp')">
+      <img src="images/rh-caisse.webp" alt="RestaurantHub — Caisse" loading="lazy" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/rh-commandes.webp')">
+      <img src="images/rh-commandes.webp" alt="RestaurantHub — Commandes" loading="lazy" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/rh-analytique.webp')">
+      <img src="images/rh-analytique.webp" alt="RestaurantHub — Analytique" loading="lazy" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/rh-site-client.webp')">
+      <img src="images/rh-site-client.webp" alt="RestaurantHub — Site client" loading="lazy" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/rh-ecran-tv.webp')">
+      <img src="images/rh-ecran-tv.webp" alt="RestaurantHub — Écran TV" loading="lazy" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/rh-personnel.webp')">
+      <img src="images/rh-personnel.webp" alt="RestaurantHub — Personnel" loading="lazy" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/rh-super-admin.webp')">
+      <img src="images/rh-super-admin.webp" alt="RestaurantHub — Super Admin" loading="lazy" />
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Demandez votre <span>démonstration gratuite</span></h3>
+    <p>20 minutes suffisent. On se déplace chez vous, sans engagement. Découvrez comment RestaurantHub peut booster la rentabilité de votre établissement.</p>
+    <div class="cta-badges">
+      <span class="cta-badge">⏱ 20 minutes</span>
+      <span class="cta-badge">📍 On vient chez vous</span>
+      <span class="cta-badge">✅ Sans engagement</span>
+      <span class="cta-badge">📅 Disponible 7j/7</span>
+    </div>
+    <a href="https://wa.me/221778172827?text=Bonjour%2C%20je%20veux%20une%20d%C3%A9mo%20de%20RestaurantHub" target="_blank" rel="noopener" class="btn-wa-big">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Contactez-nous sur WhatsApp
+    </a>
+  </div>
+</section>
+
+<div class="section-divider" style="padding-top: 0;"><br></div>
+
+<!-- ══════════════ BOUTIQUE GESTION ══════════════ -->
+<div id="boutique" class="section-label" style="padding-top: 60px;">
+  <div class="section-label-inner">
+    <span class="product-tag" style="background:rgba(59,130,246,0.1); border-color:rgba(59,130,246,0.3); color:#60a5fa;">🛍️ Boutique Gestion</span>
+  </div>
+</div>
+
+<section class="product-section" style="padding-top: 0;">
+  <!-- Hero produit -->
+  <div class="product-hero">
+    <p class="accroche" style="color: #60a5fa;">📦 Gérez votre boutique sans prise de tête</p>
+    <h2>VOTRE BOUTIQUE, <span style="color:#60a5fa;">SOUS CONTRÔLE</span><br>DEPUIS VOTRE TÉLÉPHONE</h2>
+    <p class="subtitle">Catalogue avec QR code, commandes clients, suivi des ventes et gestion du stock — tout dans une seule application mobile.</p>
+  </div>
+
+  <!-- Features boutique -->
+  <div class="features-title">Ce que vous pouvez faire avec Boutique Gestion</div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-emoji">📊</div>
+      <div class="feature-name">Tableau de bord</div>
+      <div class="feature-desc">Ventes du jour, bénéfice net et stock en un coup d'œil</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">📋</div>
+      <div class="feature-name">Gestion des commandes</div>
+      <div class="feature-desc">Suivi de chaque commande de la réception à la livraison</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">📲</div>
+      <div class="feature-name">Catalogue QR Code</div>
+      <div class="feature-desc">Vos clients parcourent votre catalogue et commandent en scannant</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">📱</div>
+      <div class="feature-name">Application mobile</div>
+      <div class="feature-desc">Gérez tout depuis votre smartphone Android ou iPhone</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">💵</div>
+      <div class="feature-name">Suivi financier</div>
+      <div class="feature-desc">Revenus, dépenses et marges calculés automatiquement</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">🔔</div>
+      <div class="feature-name">Alertes stock</div>
+      <div class="feature-desc">Notification dès qu'un produit est en rupture imminente</div>
+    </div>
+  </div>
+
+  <!-- Screenshots boutique -->
+  <div class="gallery-title">Aperçu de l'application</div>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox('images/bg-dashboard.webp')">
+      <img src="images/bg-dashboard.webp" alt="Boutique Gestion — Tableau de bord" loading="lazy" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/bg-commandes.webp')">
+      <img src="images/bg-commandes.webp" alt="Boutique Gestion — Commandes" loading="lazy" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/bg-catalogue-qr.webp')">
+      <img src="images/bg-catalogue-qr.webp" alt="Boutique Gestion — Catalogue QR" loading="lazy" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox('images/bg-app-mobile.webp')">
+      <img src="images/bg-app-mobile.webp" alt="Boutique Gestion — App mobile" loading="lazy" />
+    </div>
+  </div>
+
+  <!-- CTA boutique -->
+  <div class="cta-block" style="border-color: rgba(59,130,246,0.2);">
+    <h3>Prêt à <span style="color:#60a5fa;">digitaliser votre boutique</span> ?</h3>
+    <p>Une démonstration gratuite de 20 minutes pour voir si Boutique Gestion correspond à votre activité. On se déplace chez vous.</p>
+    <div class="cta-badges">
+      <span class="cta-badge">⏱ 20 minutes</span>
+      <span class="cta-badge">📍 On vient chez vous</span>
+      <span class="cta-badge">✅ Sans engagement</span>
+      <span class="cta-badge">📅 Disponible 7j/7</span>
+    </div>
+    <a href="https://wa.me/221778172827?text=Bonjour%2C%20je%20veux%20une%20d%C3%A9mo%20de%20Boutique%20Gestion" target="_blank" rel="noopener" class="btn-wa-big">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Contactez-nous sur WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon"><img src="logo.png" alt="Bou Digital" /></div>
+          <div class="logo-text">
+            <span class="logo-name">Bou Digital</span>
+            <span class="logo-sub">Mbour, Sénégal</span>
+          </div>
+        </div>
+        <p>Nous créons des logiciels de gestion simples, efficaces et adaptés aux réalités des commerces d'Afrique de l'Ouest. Paiements Wave, Orange Money, Espèces et Virement acceptés.</p>
+        <div style="display:flex; gap:8px; margin-top:14px; flex-wrap:wrap;">
+          <span class="payment-badge">Wave</span>
+          <span class="payment-badge">Orange Money</span>
+          <span class="payment-badge">Espèces</span>
+          <span class="payment-badge">Virement</span>
         </div>
       </div>
+      <div class="footer-contact">
+        <a href="https://wa.me/221778172827" target="_blank" rel="noopener" class="wa-link">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          +221 77 817 28 27
+        </a>
+        <a href="mailto:boucountaba@gmail.com">boucountaba@gmail.com</a>
+        <span style="color: var(--muted); font-size:12px;">Disponible 7j/7</span>
+        <span style="color: var(--muted); font-size:11.5px; margin-top:4px;">SIMPLE · RAPIDE · EFFICACE</span>
+      </div>
     </div>
-  </section>
-</main>
+    <div class="footer-bottom">
+      <p>© 2025-2026 Bou Digital — Mbour, Sénégal. Tous droits réservés.</p>
+      <a href="../">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Retour au portfolio
+      </a>
+    </div>
+  </div>
+</footer>
 
-<footer><div class="inner">© 2026 Mouhamed Boucounta Ba · Bou Digital · Mbour, Sénégal</div></footer>
-
-<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Capture agrandie">
-  <button class="x" type="button" aria-label="Fermer">×</button>
-  <button class="p" type="button" aria-label="Précédente">‹</button>
-  <figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
-  <button class="nx" type="button" aria-label="Suivante">›</button>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="Aperçu" />
 </div>
 
 <script>
-/* Lightbox : parcourt les captures du produit cliqué */
-var G={};
-document.querySelectorAll("[data-gallery]").forEach(function(g){
-  G[g.dataset.gallery]=[].map.call(g.querySelectorAll(".thumb"),function(t){return {src:t.querySelector("img").src,cap:t.querySelector("span").textContent};});
-});
-var lb=document.getElementById("lb"),li=document.getElementById("lb-img"),lc=document.getElementById("lb-cap"),cur=null,idx=0,last=null;
-function show(){var it=G[cur][idx];li.src=it.src;li.alt=it.cap;lc.textContent=it.cap+" · "+(idx+1)+" / "+G[cur].length;}
-function open(g,i){last=document.activeElement;cur=g;idx=i;show();lb.hidden=false;lb.querySelector(".x").focus();}
-function close(){lb.hidden=true;if(last)last.focus();}
-document.querySelectorAll("[data-g]").forEach(function(b){b.addEventListener("click",function(){open(b.dataset.g,+b.dataset.i);});});
-lb.querySelector(".x").onclick=close;
-lb.querySelector(".p").onclick=function(){idx=(idx-1+G[cur].length)%G[cur].length;show();};
-lb.querySelector(".nx").onclick=function(){idx=(idx+1)%G[cur].length;show();};
-lb.addEventListener("click",function(e){if(e.target===lb)close();});
-document.addEventListener("keydown",function(e){if(lb.hidden)return;if(e.key==="Escape")close();if(e.key==="ArrowLeft")lb.querySelector(".p").click();if(e.key==="ArrowRight")lb.querySelector(".nx").click();});
+  function openLightbox(src) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-/* Vidéos : le bloc disparaît si le fichier n'est pas encore en ligne */
-document.querySelectorAll("[data-video]").forEach(function(box){
-  var v=box.querySelector("video"),s=v.querySelector("source");
-  function hide(){box.hidden=true;}
-  s.addEventListener("error",hide);v.addEventListener("error",hide);
-});
-
-/* Apparition au défilement */
-var io="IntersectionObserver" in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.12}):null;
-document.querySelectorAll(".rv").forEach(function(el){io?io.observe(el):el.classList.add("in");});
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
 </script>
 </body>
 </html>
