@@ -89,7 +89,7 @@ export function HeroSection() {
             transition={{ delay: 0.2 }}
             className="text-emerald-400 text-lg tracking-wider"
           >
-            Bienvenu, Chez
+            Bienvenue chez
           </motion.p>
           
           <motion.h1
@@ -123,7 +123,7 @@ export function HeroSection() {
             transition={{ delay: 0.8 }}
             className="text-gray-400 text-lg max-w-2xl mx-auto mb-8"
           >
-            Fondateur de Bou Digital — SaaS actifs en production en Afrique de l'Ouest.
+            Fondateur de Bou Digital — créateur de 2 SaaS de gestion pour les commerces d'Afrique de l'Ouest.
             Certifié FORCE-N IA. Remote international. Agile & livraisons rapides.
           </motion.p>
 
@@ -135,7 +135,7 @@ export function HeroSection() {
           >
             {[
               { value: 4, suffix: '+', label: "ans d'expérience" },
-              { value: 2, suffix: '', label: 'SaaS actifs' },
+              { value: 2, suffix: '', label: 'SaaS conçus' },
               { value: 4, suffix: '', label: 'apps Play Store' },
               { value: 9, suffix: '', label: 'modules livrés' },
             ].map((stat, i) => (

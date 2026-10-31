@@ -5,7 +5,7 @@ import { Card } from './ui/card'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
-import { Github, Linkedin, Mail, Phone, MapPin, WebhookIcon } from 'lucide-react'
+import { Github, Linkedin, Mail, Phone, MapPin } from 'lucide-react'
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -35,7 +35,7 @@ export function ContactSection() {
       icon: MapPin,
       label: 'Adresse',
       value: 'Mbour, Sénégal',
-      href: '#'
+      href: 'https://maps.google.com/?q=Mbour,Sénégal'
     }
   ]
 
@@ -43,7 +43,6 @@ export function ContactSection() {
     { icon: Github, href: 'https://github.com/misterbou/', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/mouhamed-boucountaba', label: 'LinkedIn' },
     { icon: TikTokIcon, href: 'https://www.tiktok.com/@bou_digital', label: 'TikTok — Informatique Facile' },
-    { icon: WebhookIcon, href: 'https://boucountaba.wixsite.com/boudigital', label: 'Website' },
     { icon: Mail, href: 'mailto:boucountaba@gmail.com', label: 'Email' },
   ]
 

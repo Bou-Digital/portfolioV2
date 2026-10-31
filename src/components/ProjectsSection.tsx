@@ -21,7 +21,7 @@ export function ProjectsSection() {
       image: import.meta.env.BASE_URL + "sopec.webp",
       objectPosition: 'top',
       technologies: ["Flutter", "Spring Boot", "Docker", "Codemagic", "OTP", "CI/CD", "iOS", "Android"],
-      live: "#",
+      live: "https://sopec-group.com",
       featured: true,
       categories: ['Mobile']
     },
@@ -38,6 +38,7 @@ export function ProjectsSection() {
     {
       title: "Modules Mobile & Backend Walalma",
       company: "Bou Digital (prestation pour Nadji.Bi Sénégal SUARL) — Remote",
+      companyUrl: "https://nadjibi.com",
       description: "Développement et intégration de 9 modules logiciels sur 3 couches techniques (Angular, Spring Boot, Flutter) sur la plateforme Walalma en production. Filtrage automatique du stock par plateforme, module Mouvement de Stock complet (DTOs, endpoints REST), et 3 modules Flutter avec indicateurs temps réel.",
       image: import.meta.env.BASE_URL + "walalma.jpeg",
       technologies: ["Flutter", "Angular", "Spring Boot", "MySQL"],
@@ -48,6 +49,7 @@ export function ProjectsSection() {
     {
       title: "Dashboard Walalma — Tableau de bord solaire",
       company: "Bou Digital (prestation pour Nadji.Bi Sénégal SUARL) — Remote",
+      companyUrl: "https://nadjibi.com",
       description: "Tableau de bord web de supervision pour propriétaires de plateformes solaires : contrôle à distance des machines (ON/OFF), suivi de production en temps réel, blocage automatique en cas de non-paiement, rapports analytiques avec exports PDF/Excel.",
       image: import.meta.env.BASE_URL + "walalma2.jpeg",
       technologies: ["Angular", "Spring Boot", "MySQL"],
@@ -61,7 +63,7 @@ export function ProjectsSection() {
       description: "SaaS multi-tenant de gestion de restaurants avec isolation complète des données par tenant : menu digital via QR Code, gestion des commandes en temps réel, caisse, stocks et rapports de ventes automatisés. Site vitrine + dashboard + app mobile.",
       image: import.meta.env.BASE_URL + "restaurant-dashboard.png",
       technologies: ["Angular", "Spring Boot", "Flutter", "MySQL"],
-      live: "https://restaurant-manager.mooo.com",
+      live: "#",
       featured: true,
       categories: ['SaaS', 'Mobile']
     },
@@ -71,7 +73,7 @@ export function ProjectsSection() {
       description: "SaaS B2B/B2C adapté à 8 secteurs d'activité : caisse (POS) complète, catalogue QR Code, analytics financier (bénéfice net, taux de marge, top produits), architecture multi-boutiques avec suivi des abonnements, App client PWA et App livreur.",
       image: import.meta.env.BASE_URL + "boutique-dashboard.png",
       technologies: ["Angular", "TypeScript", "Tailwind CSS", "Spring Boot", "MySQL", "Docker", "PWA"],
-      live: "https://gestion-boutique.mooo.com",
+      live: "#",
       featured: true,
       categories: ['SaaS']
     },
@@ -88,16 +90,18 @@ export function ProjectsSection() {
     {
       title: "Responsable Digital — Projet PanoMagik",
       company: "Nadji.Bi Group SA — Mbour",
+      companyUrl: "https://nadjibi.com",
       description: "Pilotage et développement d'un écosystème digital complet pour la gestion d'installations solaires.",
       image: import.meta.env.BASE_URL + "panomagik.jpg",
       technologies: ["Flutter", "Angular", "Spring Boot", "MySQL", "IoT"],
-      live: "https://admin.panomagik.com/",
+      live: "https://panomagik.com",
       featured: true,
       categories: ['IoT', 'Mobile']
     },
     {
       title: "Sama Pump",
       company: "Nadji.Bi Group SA — Mbour",
+      companyUrl: "https://nadjibi.com",
       description: "Application de suivi des pompes solaires — publication sur Google Play.",
       image: import.meta.env.BASE_URL + "samapompe.png",
       technologies: ["Flutter", "Spring Boot", "MySQL", "IoT"],
@@ -108,6 +112,7 @@ export function ProjectsSection() {
     {
       title: "Woomal Mbay Contacts",
       company: "Nadji.Bi Group SA — Mbour",
+      companyUrl: "https://nadjibi.com",
       description: "Gestion des contacts pour le programme Woomal Mbay.",
       image: import.meta.env.BASE_URL + "wcontact.jpeg",
       technologies: ["Flutter", "Spring Boot", "MySQL"],
@@ -116,18 +121,20 @@ export function ProjectsSection() {
       categories: ['Mobile']
     },
     {
-      title: "Développeur Sénior Android & Web — Programme Woomal Mbay",
+      title: "Programme Woomal Mbay — Android & Web",
       company: "Nadji.Bi Group SA — Mbour",
+      companyUrl: "https://nadjibi.com",
       description: "Développement d'applications mobiles internes et déploiement sur le Play Store d'une solution intégrée pour la gestion de pompes solaires connectées.",
       image: import.meta.env.BASE_URL + "woomalmbay.jpg",
       technologies: ["Flutter", "Angular", "Spring Boot", "MySQL", "IoT"],
-      live: "https://app.woomalmbay.com/",
+      live: "https://nadjibi.com",
       featured: false,
       categories: ['Mobile', 'IoT']
     },
     {
-      title: "Développeur Junior — Projet Walalma",
+      title: "Projet Walalma v1 — Développement initial",
       company: "Nadji.Bi Group SA — Mbour",
+      companyUrl: "https://nadjibi.com",
       description: "Conception et développement d'un ensemble d'applications mobiles et du dashboard de supervision. Applications Walalma Manager, Walalma Client et Walalma Caissier.",
       image: import.meta.env.BASE_URL + "walalma.jpeg",
       technologies: ["Flutter", "Angular", "Spring Boot", "MySQL", "IoT"],
@@ -227,7 +234,9 @@ export function ProjectsSection() {
                     {project.title}
                   </h3>
                   <h5 className="text-gray-400 italic mb-2">
-                    {project.company}
+                    {'companyUrl' in project && project.companyUrl ? (
+                      <a href={project.companyUrl as string} target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors duration-200">{project.company}</a>
+                    ) : project.company}
                   </h5>
                   <p className="text-gray-400 mb-4 leading-relaxed">
                     {project.description}
@@ -296,6 +305,11 @@ export function ProjectsSection() {
                   <h4 className="text-lg text-white mb-2 group-hover:text-emerald-400 transition-colors duration-300">
                     {project.title}
                   </h4>
+                  {'companyUrl' in project && project.companyUrl ? (
+                    <p className="text-gray-400 text-xs italic mb-1">
+                      <a href={project.companyUrl as string} target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors duration-200">{project.company}</a>
+                    </p>
+                  ) : null}
                   <p className="text-gray-400 text-sm mb-3 line-clamp-3">
                     {project.description}
                   </p>

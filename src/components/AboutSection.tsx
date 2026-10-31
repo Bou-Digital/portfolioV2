@@ -9,7 +9,7 @@ export function AboutSection() {
     {
       icon: Building2,
       title: 'Fondateur — Bou Digital',
-      description: "Créateur de 2 SaaS multi-tenant actifs en production : Boutique Gestion et Restaurant Manager, adaptés à l'Afrique francophone."
+      description: "Créateur de 2 SaaS multi-tenant déployables pour chaque client : Boutique Gestion et Restaurant Manager, adaptés à l'Afrique francophone."
     },
     {
       icon: Globe,
@@ -57,7 +57,7 @@ export function AboutSection() {
               Développeur Full Stack Web & Mobile avec plus de 4 ans d’expérience dans la conception
               et le déploiement de solutions digitales en production en Afrique de l’Ouest.
               Fondateur de <span className="text-emerald-400">Bou Digital</span> — suite de SaaS
-              multi-tenant actifs (Boutique Gestion, Restaurant Manager).
+              multi-tenant (Boutique Gestion, Restaurant Manager), prêts à déployer.
             </p>
             <p className="text-gray-300 leading-relaxed">
               Expérience internationale en remote (Suisse), livraisons Play Store, architecture
