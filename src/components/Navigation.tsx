@@ -25,6 +25,7 @@ export function Navigation() {
   }
 
   const resumePath = `${import.meta.env.BASE_URL || '/'}CV_Boucounta_22.06.26_Principal.pdf`
+  const saasPath = `${import.meta.env.BASE_URL || '/'}saas/`
 
   return (
     <motion.nav
@@ -68,6 +69,15 @@ export function Navigation() {
                 {item}
               </motion.button>
             ))}
+            <motion.a
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              href={saasPath}
+              className="px-3 py-1 text-emerald-400 hover:text-emerald-300 border border-emerald-500/40 hover:border-emerald-400 rounded-lg text-sm font-semibold transition-all duration-200"
+            >
+              Mes SaaS
+            </motion.a>
           </div>
 
           {/* Hamburger button — mobile only */}
@@ -96,11 +106,18 @@ export function Navigation() {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className="text-gray-300 hover:text-white py-3 text-left capitalize border-b border-white/5 last:border-0 transition-colors duration-200"
+                  className="text-gray-300 hover:text-white py-3 text-left capitalize border-b border-white/5 transition-colors duration-200"
                 >
                   {item}
                 </button>
               ))}
+              <a
+                href={saasPath}
+                className="text-emerald-400 hover:text-emerald-300 py-3 font-semibold border-b border-white/5 last:border-0 transition-colors duration-200"
+                onClick={() => setMobileOpen(false)}
+              >
+                Mes SaaS ↗
+              </a>
             </div>
           </motion.div>
         )}
