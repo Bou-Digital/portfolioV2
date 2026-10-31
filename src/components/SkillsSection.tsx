@@ -1,181 +1,247 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Card } from './ui/card'
-import { GraduationCap, Award } from 'lucide-react'
+import { GraduationCap, Award, Smartphone, Monitor, Server, Database, Paintbrush, Terminal, Brain, BookOpen } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+
+type Level = 'En production' | 'Sur projets' | 'Notions'
+
+const levelBadge = (l: Level) =>
+  l === 'En production' ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' :
+  l === 'Sur projets'   ? 'bg-blue-500/15 text-blue-400 border-blue-500/30' :
+                          'bg-gray-500/15 text-gray-400 border-gray-500/30'
+
+const levelDot = (l: Level) =>
+  l === 'En production' ? 'bg-emerald-400' :
+  l === 'Sur projets'   ? 'bg-blue-400' :
+                          'bg-gray-500'
+
+type Category = {
+  title: string
+  icon: LucideIcon
+  gradient: string
+  iconBg: string
+  skills: { name: string; level: Level }[]
+}
 
 export function SkillsSection() {
-  const skillCategories = [
+  const skillCategories: Category[] = [
     {
       title: 'Mobile Frontend',
+      icon: Smartphone,
+      gradient: 'from-purple-500/50 via-purple-500/10 to-transparent',
+      iconBg: 'bg-purple-500/20 text-purple-400',
       skills: [
-        { name: 'Flutter', level: 95, color: 'from-blue-400 to-blue-600' },
-        { name: 'React Native', level: 88, color: 'from-blue-500 to-blue-700' },
-        { name: 'Android (Java/Kotlin)', level: 60, color: 'from-cyan-400 to-cyan-600' },
-
+        { name: 'Flutter', level: 'En production' },
+        { name: 'React Native', level: 'Sur projets' },
+        { name: 'Android (Java/Kotlin)', level: 'Notions' },
       ]
     },
     {
       title: 'Web Frontend',
+      icon: Monitor,
+      gradient: 'from-blue-500/50 via-blue-500/10 to-transparent',
+      iconBg: 'bg-blue-500/20 text-blue-400',
       skills: [
-        { name: 'Angular', level: 95, color: 'from-blue-400 to-blue-600' },
-        { name: 'HTML', level: 95, color: 'from-blue-400 to-blue-600' },
-        { name: 'React/Next.js', level: 95, color: 'from-blue-400 to-blue-600' },
-        { name: 'TypeScript', level: 90, color: 'from-blue-500 to-blue-700' },
-        { name: 'Tailwind CSS', level: 88, color: 'from-cyan-400 to-cyan-600' },
-        { name: 'Vue.js', level: 75, color: 'from-green-400 to-green-600' },
+        { name: 'Angular', level: 'En production' },
+        { name: 'HTML / CSS', level: 'En production' },
+        { name: 'React / Next.js', level: 'En production' },
+        { name: 'TypeScript', level: 'En production' },
+        { name: 'Tailwind CSS', level: 'Sur projets' },
+        { name: 'Vue.js', level: 'Notions' },
       ]
     },
     {
       title: 'Backend',
+      icon: Server,
+      gradient: 'from-emerald-500/50 via-emerald-500/10 to-transparent',
+      iconBg: 'bg-emerald-500/20 text-emerald-400',
       skills: [
-        { name: 'Spring Boot', level: 90, color: 'from-green-500 to-green-700' },
-        { name: 'Node.js', level: 90, color: 'from-green-500 to-green-700' },
-        { name: 'Express.js', level: 85, color: 'from-yellow-400 to-yellow-600' },
-        { name: 'PHP', level: 80, color: 'from-purple-400 to-purple-600' },
-        { name: 'Python', level: 82, color: 'from-blue-300 to-blue-500' },
+        { name: 'Spring Boot', level: 'En production' },
+        { name: 'Node.js', level: 'Sur projets' },
+        { name: 'Express.js', level: 'Sur projets' },
+        { name: 'PHP', level: 'Sur projets' },
+        { name: 'Python', level: 'Sur projets' },
       ]
     },
     {
       title: 'Database',
+      icon: Database,
+      gradient: 'from-cyan-500/50 via-cyan-500/10 to-transparent',
+      iconBg: 'bg-cyan-500/20 text-cyan-400',
       skills: [
-        { name: 'MySQL', level: 90, color: 'from-green-500 to-green-700' },
-        { name: 'SQLite', level: 82, color: 'from-cyan-400 to-cyan-600' },
-        { name: 'Supabase', level: 78, color: 'from-emerald-400 to-emerald-600' },
+        { name: 'MySQL', level: 'En production' },
+        { name: 'SQLite', level: 'Sur projets' },
+        { name: 'Supabase', level: 'Sur projets' },
       ]
     },
     {
       title: 'Design & UX',
+      icon: Paintbrush,
+      gradient: 'from-pink-500/50 via-pink-500/10 to-transparent',
+      iconBg: 'bg-pink-500/20 text-pink-400',
       skills: [
-        { name: 'Figma', level: 92, color: 'from-gray-400 to-gray-600' },
-        { name: 'Illustrator', level: 90, color: 'from-blue-600 to-blue-800' },
-        { name: 'Photoshop', level: 90, color: 'from-orange-400 to-orange-600' },
-        { name: 'Canva', level: 88, color: 'from-pink-400 to-pink-600' }
+        { name: 'Figma', level: 'En production' },
+        { name: 'Illustrator', level: 'Sur projets' },
+        { name: 'Photoshop', level: 'Sur projets' },
+        { name: 'Canva', level: 'Sur projets' },
       ]
     },
     {
       title: 'DevOps & Outils',
+      icon: Terminal,
+      gradient: 'from-amber-500/50 via-amber-500/10 to-transparent',
+      iconBg: 'bg-amber-500/20 text-amber-400',
       skills: [
-        { name: 'Git/GitHub', level: 92, color: 'from-gray-400 to-gray-600' },
-        { name: 'Docker', level: 82, color: 'from-blue-600 to-blue-800' },
-        { name: 'CI/CD', level: 78, color: 'from-orange-400 to-orange-600' },
-        { name: 'Nginx', level: 78, color: 'from-green-400 to-green-600' },
-        { name: 'Play Store', level: 85, color: 'from-emerald-400 to-emerald-600' },
-        { name: 'Vercel', level: 80, color: 'from-gray-300 to-gray-500' },
-        { name: 'Codemagic', level: 75, color: 'from-pink-400 to-pink-600' }
+        { name: 'Git / GitHub', level: 'En production' },
+        { name: 'Docker', level: 'En production' },
+        { name: 'Play Store', level: 'En production' },
+        { name: 'CI/CD', level: 'Sur projets' },
+        { name: 'Nginx', level: 'Sur projets' },
+        { name: 'Vercel', level: 'Sur projets' },
+        { name: 'Codemagic', level: 'Sur projets' },
       ]
     },
     {
       title: 'IA & Outils AI',
+      icon: Brain,
+      gradient: 'from-violet-500/50 via-violet-500/10 to-transparent',
+      iconBg: 'bg-violet-500/20 text-violet-400',
       skills: [
-        { name: 'Claude / Claude Code', level: 92, color: 'from-orange-400 to-orange-600' },
-        { name: 'ChatGPT', level: 90, color: 'from-emerald-400 to-emerald-600' },
-        { name: 'ElevenLabs (voix off)', level: 82, color: 'from-purple-400 to-purple-600' },
-        { name: 'Midjourney / DALL-E', level: 78, color: 'from-pink-400 to-pink-600' },
-        { name: 'Prompt Engineering', level: 88, color: 'from-yellow-400 to-yellow-600' }
+        { name: 'Claude / Claude Code', level: 'En production' },
+        { name: 'ChatGPT', level: 'En production' },
+        { name: 'Prompt Engineering', level: 'En production' },
+        { name: 'ElevenLabs (voix off)', level: 'Sur projets' },
+        { name: 'Midjourney / DALL-E', level: 'Sur projets' },
       ]
     },
     {
       title: 'Formation & Pédagogie',
+      icon: BookOpen,
+      gradient: 'from-teal-500/50 via-teal-500/10 to-transparent',
+      iconBg: 'bg-teal-500/20 text-teal-400',
       skills: [
-        { name: 'Animation de cours informatiques', level: 92, color: 'from-teal-400 to-teal-600' },
-        { name: 'Formation en présentiel', level: 90, color: 'from-teal-500 to-teal-700' },
-        { name: 'Création de supports pédagogiques', level: 85, color: 'from-cyan-400 to-cyan-600' },
-        { name: 'Vulgarisation technique (TikTok)', level: 88, color: 'from-cyan-500 to-cyan-700' }
+        { name: 'Animation de cours informatiques', level: 'En production' },
+        { name: 'Formation en présentiel', level: 'En production' },
+        { name: 'Vulgarisation technique (TikTok)', level: 'Sur projets' },
+        { name: 'Création de supports pédagogiques', level: 'Sur projets' },
       ]
     }
   ]
 
+  const allSkills = skillCategories.flatMap(c => c.skills)
+  const counts = {
+    prod: allSkills.filter(s => s.level === 'En production').length,
+    proj: allSkills.filter(s => s.level === 'Sur projets').length,
+    not:  allSkills.filter(s => s.level === 'Notions').length,
+  }
+
   return (
     <section id="compétences" className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-6">
+
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true, margin: '-100px' }}
+          className="text-center mb-14"
         >
-          <h2 className="text-4xl md:text-5xl text-white mb-6">Compétences et Technologies</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto"></div>
-          <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-            Voici les technologies et outils que j'utilise pour concrétiser les idées
+          <h2 className="text-4xl md:text-5xl text-white mb-4">Compétences et Technologies</h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mb-5" />
+          <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
+            Technologies et outils que j'utilise pour concrétiser les idées
           </p>
+
+          {/* Stats + légende */}
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              { label: 'En production', count: counts.prod, dot: 'bg-emerald-400', badge: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' },
+              { label: 'Sur projets',   count: counts.proj, dot: 'bg-blue-400',    badge: 'bg-blue-500/15 text-blue-400 border-blue-500/30' },
+              { label: 'Notions',       count: counts.not,  dot: 'bg-gray-500',    badge: 'bg-gray-500/15 text-gray-400 border-gray-500/30' },
+            ].map(({ label, count, dot, badge }) => (
+              <span key={label} className={`inline-flex items-center gap-2 text-xs px-4 py-1.5 rounded-full font-semibold border ${badge}`}>
+                <span className={`w-2 h-2 rounded-full ${dot}`} />
+                {label}
+                <span className="opacity-60">· {count}</span>
+              </span>
+            ))}
+          </div>
         </motion.div>
-        
-        <div className="grid md:grid-cols-3 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
+
+        {/* Grille catégories */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {skillCategories.map((cat, ci) => (
             <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 50 }}
+              key={cat.title}
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: categoryIndex * 0.2, duration: 0.8 }}
-              viewport={{ once: true }}
+              transition={{ delay: ci * 0.07, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: '-80px' }}
+              className={`p-[1px] rounded-2xl bg-gradient-to-br ${cat.gradient}`}
             >
-              <Card className="p-6 bg-gray-900/50 border-white/10 backdrop-blur-sm">
-                <h3 className="text-xl text-white mb-6 text-center">{category.title}</h3>
-                <div className="space-y-4">
-                  {category.skills.map((skill, skillIndex) => (
+              <div className="bg-[#0d0d11] rounded-[calc(1rem-1px)] p-5 h-full">
+
+                {/* Categorie header */}
+                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/8">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${cat.iconBg}`}>
+                    <cat.icon className="w-4 h-4" />
+                  </div>
+                  <span className="text-gray-200 text-sm font-semibold">{cat.title}</span>
+                </div>
+
+                {/* Skills */}
+                <div className="space-y-1">
+                  {cat.skills.map((skill, si) => (
                     <motion.div
                       key={skill.name}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: -8 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ 
-                        delay: categoryIndex * 0.2 + skillIndex * 0.1, 
-                        duration: 0.6 
-                      }}
-                      viewport={{ once: true }}
-                      className="space-y-2"
+                      whileHover={{ backgroundColor: 'rgba(255,255,255,0.04)' }}
+                      transition={{ delay: ci * 0.07 + si * 0.04, duration: 0.35 }}
+                      viewport={{ once: true, margin: '-80px' }}
+                      className="flex items-center justify-between gap-2 px-2 py-1.5 rounded-lg cursor-default"
                     >
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-300 text-sm">{skill.name}</span>
-                        <span className="text-gray-400 text-xs">{skill.level}%</span>
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span className={`w-[7px] h-[7px] rounded-full flex-shrink-0 ${levelDot(skill.level)}`} />
+                        <span className="text-gray-300 text-xs truncate">{skill.name}</span>
                       </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          transition={{ 
-                            delay: categoryIndex * 0.2 + skillIndex * 0.1 + 0.3,
-                            duration: 1,
-                            ease: "easeOut"
-                          }}
-                          viewport={{ once: true }}
-                          className={`h-full bg-gradient-to-r ${skill.color} rounded-full relative`}
-                        >
-                          <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
-                        </motion.div>
-                      </div>
+                      <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold border whitespace-nowrap flex-shrink-0 ${levelBadge(skill.level)}`}>
+                        {skill.level}
+                      </span>
                     </motion.div>
                   ))}
                 </div>
-              </Card>
+
+              </div>
             </motion.div>
           ))}
         </div>
-        
-        {/* Tech Stack Icons */}
+
+        {/* Tech Stack pills */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.7 }}
+          viewport={{ once: true, margin: '-60px' }}
           className="mt-16 text-center"
         >
           <h3 className="text-2xl text-white mb-8">Technologies avec lesquelles je travaille</h3>
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+          <div className="flex flex-wrap justify-center gap-3">
             {[
-              'Flutter(Dart)', 'Html', 'CSS', 'JavaScript', 'Angular', 'Java(Spring Boot)',
-              'React', 'TypeScript', 'Node.js', 'Next.js', 'Python', 'PHP', 'MySQL',
-              'Docker', 'Git', 'Tailwind', 'Firebase', 'Figma'
-            ].map((tech, index) => (
+              'Flutter', 'Spring Boot', 'Angular', 'React / Next.js',
+              'TypeScript', 'Node.js', 'Python', 'PHP', 'MySQL',
+              'Docker', 'Git', 'Tailwind', 'Figma', 'Supabase', 'Vercel'
+            ].map((tech, i) => (
               <motion.span
                 key={tech}
-                initial={{ opacity: 0, scale: 0 }}
+                initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.8 + index * 0.05, duration: 0.3 }}
-                viewport={{ once: true }}
-                className="px-4 py-2 bg-white/5 text-gray-400 rounded-lg border border-white/10 text-sm hover:bg-white/10 transition-all duration-300"
+                whileHover={{ scale: 1.06, backgroundColor: 'rgba(255,255,255,0.1)' }}
+                transition={{ delay: 0.2 + i * 0.03, duration: 0.3 }}
+                viewport={{ once: true, margin: '-60px' }}
+                className="px-4 py-2 bg-white/5 text-gray-400 rounded-lg border border-white/10 text-sm cursor-default"
               >
                 {tech}
               </motion.span>
@@ -187,8 +253,8 @@ export function SkillsSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.7 }}
+          viewport={{ once: true, margin: '-60px' }}
           className="mt-20"
         >
           <h3 className="text-2xl text-white text-center mb-10">Formation & Certifications</h3>
@@ -199,50 +265,47 @@ export function SkillsSection() {
                 period: 'Jan – Juil 2025',
                 title: 'Certification IA appliquée',
                 org: 'FORCE-N — Programme national sénégalais',
-                color: 'from-emerald-500/20 to-emerald-600/5',
-                border: 'border-emerald-500/30',
-                iconColor: 'text-emerald-400',
-                iconBg: 'bg-emerald-500/20',
+                gradient: 'from-emerald-500/50 via-emerald-500/10 to-transparent',
+                iconBg: 'bg-emerald-500/20 text-emerald-400',
               },
               {
                 icon: GraduationCap,
                 period: '2018 – 2021',
                 title: 'Licence Informatique & Réseaux',
-                org: 'AFI L\'UE — Dakar, Sénégal',
-                color: 'from-blue-500/20 to-blue-600/5',
-                border: 'border-blue-500/30',
-                iconColor: 'text-blue-400',
-                iconBg: 'bg-blue-500/20',
+                org: "AFI L'UE — Dakar, Sénégal",
+                gradient: 'from-blue-500/50 via-blue-500/10 to-transparent',
+                iconBg: 'bg-blue-500/20 text-blue-400',
               },
               {
                 icon: GraduationCap,
                 period: '2017 – 2018',
                 title: 'Baccalauréat Série S2',
                 org: 'Lycée Demba Diop — Mbour',
-                color: 'from-purple-500/20 to-purple-600/5',
-                border: 'border-purple-500/30',
-                iconColor: 'text-purple-400',
-                iconBg: 'bg-purple-500/20',
+                gradient: 'from-purple-500/50 via-purple-500/10 to-transparent',
+                iconBg: 'bg-purple-500/20 text-purple-400',
               },
             ].map((item, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.15, duration: 0.6 }}
-                viewport={{ once: true }}
-                className={`p-6 rounded-2xl bg-gradient-to-br ${item.color} border ${item.border}`}
+                transition={{ delay: i * 0.12, duration: 0.55 }}
+                viewport={{ once: true, margin: '-60px' }}
+                className={`p-[1px] rounded-2xl bg-gradient-to-br ${item.gradient}`}
               >
-                <div className={`w-10 h-10 rounded-xl ${item.iconBg} flex items-center justify-center mb-4`}>
-                  <item.icon className={`w-5 h-5 ${item.iconColor}`} />
+                <div className="bg-[#0d0d11] rounded-[calc(1rem-1px)] p-6 h-full">
+                  <div className={`w-10 h-10 rounded-xl ${item.iconBg} flex items-center justify-center mb-4`}>
+                    <item.icon className="w-5 h-5" />
+                  </div>
+                  <p className="text-gray-500 text-xs mb-1">{item.period}</p>
+                  <h4 className="text-white font-medium mb-1">{item.title}</h4>
+                  <p className="text-gray-400 text-sm">{item.org}</p>
                 </div>
-                <p className="text-gray-400 text-xs mb-1">{item.period}</p>
-                <h4 className="text-white font-medium mb-1">{item.title}</h4>
-                <p className="text-gray-400 text-sm">{item.org}</p>
               </motion.div>
             ))}
           </div>
         </motion.div>
+
       </div>
     </section>
   )
