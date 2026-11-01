@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { GraduationCap, Award, Smartphone, Monitor, Server, Database, Paintbrush, Terminal, Brain, BookOpen } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { useLang } from '../context/LangContext'
 
 type Level = 'En production' | 'Sur projets' | 'Notions'
 
@@ -25,6 +26,13 @@ type Category = {
 }
 
 export function SkillsSection() {
+  const { t } = useLang()
+
+  const levelKey = (l: Level) =>
+    l === 'En production' ? 'skills.level.prod' as const :
+    l === 'Sur projets'   ? 'skills.level.proj' as const :
+                            'skills.level.notions' as const
+
   const skillCategories: Category[] = [
     {
       title: 'Mobile Frontend',
@@ -148,22 +156,22 @@ export function SkillsSection() {
           viewport={{ once: true, margin: '-100px' }}
           className="text-center mb-14"
         >
-          <h2 className="text-4xl md:text-5xl text-white mb-4">Compétences et Technologies</h2>
+          <h2 className="text-4xl md:text-5xl text-white mb-4">{t('skills.title')}</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mb-5" />
           <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-            Technologies et outils que j'utilise pour concrétiser les idées
+            {t('skills.sub')}
           </p>
 
           {/* Stats + légende */}
           <div className="flex flex-wrap justify-center gap-3">
-            {[
-              { label: 'En production', count: counts.prod, dot: 'bg-emerald-400', badge: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' },
-              { label: 'Sur projets',   count: counts.proj, dot: 'bg-blue-400',    badge: 'bg-blue-500/15 text-blue-400 border-blue-500/30' },
-              { label: 'Notions',       count: counts.not,  dot: 'bg-gray-500',    badge: 'bg-gray-500/15 text-gray-400 border-gray-500/30' },
-            ].map(({ label, count, dot, badge }) => (
-              <span key={label} className={`inline-flex items-center gap-2 text-xs px-4 py-1.5 rounded-full font-semibold border ${badge}`}>
+            {([
+              { key: 'skills.level.prod' as const, count: counts.prod, dot: 'bg-emerald-400', badge: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' },
+              { key: 'skills.level.proj' as const, count: counts.proj, dot: 'bg-blue-400',    badge: 'bg-blue-500/15 text-blue-400 border-blue-500/30' },
+              { key: 'skills.level.notions' as const, count: counts.not, dot: 'bg-gray-500', badge: 'bg-gray-500/15 text-gray-400 border-gray-500/30' },
+            ]).map(({ key, count, dot, badge }) => (
+              <span key={key} className={`inline-flex items-center gap-2 text-xs px-4 py-1.5 rounded-full font-semibold border ${badge}`}>
                 <span className={`w-2 h-2 rounded-full ${dot}`} />
-                {label}
+                {t(key)}
                 <span className="opacity-60">· {count}</span>
               </span>
             ))}
@@ -181,7 +189,7 @@ export function SkillsSection() {
               viewport={{ once: true, margin: '-80px' }}
               className={`p-[1px] rounded-2xl bg-gradient-to-br ${cat.gradient}`}
             >
-              <div className="bg-[#0d0d11] rounded-[calc(1rem-1px)] p-5 h-full">
+              <div className="skill-card-inner bg-[#0d0d11] rounded-[calc(1rem-1px)] p-5 h-full">
 
                 {/* Categorie header */}
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/8">
@@ -208,7 +216,7 @@ export function SkillsSection() {
                         <span className="text-gray-300 text-xs truncate">{skill.name}</span>
                       </div>
                       <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold border whitespace-nowrap flex-shrink-0 ${levelBadge(skill.level)}`}>
-                        {skill.level}
+                        {t(levelKey(skill.level))}
                       </span>
                     </motion.div>
                   ))}
@@ -227,7 +235,7 @@ export function SkillsSection() {
           viewport={{ once: true, margin: '-60px' }}
           className="mt-16 text-center"
         >
-          <h3 className="text-2xl text-white mb-8">Technologies avec lesquelles je travaille</h3>
+          <h3 className="text-2xl text-white mb-8">{t('skills.stack.title')}</h3>
           <div className="flex flex-wrap justify-center gap-3">
             {[
               'Flutter', 'Spring Boot', 'Angular', 'React / Next.js',
@@ -257,7 +265,7 @@ export function SkillsSection() {
           viewport={{ once: true, margin: '-60px' }}
           className="mt-20"
         >
-          <h3 className="text-2xl text-white text-center mb-10">Formation & Certifications</h3>
+          <h3 className="text-2xl text-white text-center mb-10">{t('skills.edu.title')}</h3>
           <div className="grid md:grid-cols-3 gap-5">
             {[
               {
@@ -293,7 +301,7 @@ export function SkillsSection() {
                 viewport={{ once: true, margin: '-60px' }}
                 className={`p-[1px] rounded-2xl bg-gradient-to-br ${item.gradient}`}
               >
-                <div className="bg-[#0d0d11] rounded-[calc(1rem-1px)] p-6 h-full">
+                <div className="skill-card-inner bg-[#0d0d11] rounded-[calc(1rem-1px)] p-6 h-full">
                   <div className={`w-10 h-10 rounded-xl ${item.iconBg} flex items-center justify-center mb-4`}>
                     <item.icon className="w-5 h-5" />
                   </div>

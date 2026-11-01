@@ -6,6 +6,7 @@ import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
 import { Github, Linkedin, Mail, Phone, MapPin } from 'lucide-react'
+import { useLang } from '../context/LangContext'
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -18,22 +19,24 @@ import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
 
 export function ContactSection() {
+  const { t } = useLang()
+
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
+      labelKey: 'Email' as const,
       value: 'boucountaba@gmail.com',
       href: 'mailto:boucountaba@gmail.com'
     },
     {
       icon: Phone,
-      label: 'Téléphone',
+      labelKey: 'contact.info.phone' as const,
       value: '+221 77 817 28 27',
       href: 'tel:+221778172827'
     },
     {
       icon: MapPin,
-      label: 'Adresse',
+      labelKey: 'contact.info.address' as const,
       value: 'Mbour, Sénégal',
       href: 'https://maps.google.com/?q=Mbour,Sénégal'
     }
@@ -75,7 +78,7 @@ export function ContactSection() {
     }
 
     if (!firstName || !email || !message) {
-      setStatus({ ok: false, message: 'Merci de compléter les champs obligatoires (Prénom, Email, Message).' })
+      setStatus({ ok: false, message: t('contact.form.err.required') })
       return
     }
 
@@ -105,11 +108,11 @@ export function ContactSection() {
            AutoReply: import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID,
              key: import.meta.env.VITE_EMAILJS_PUBLIC_KEY });
 
-      setStatus({ ok: true, message: 'Message envoyé — je vous réponds sous 24-48h.' })
+      setStatus({ ok: true, message: t('contact.form.ok') })
       form.reset()
     } catch (err) {
       console.error('Email send error', err)
-      setStatus({ ok: false, message: "Une erreur est survenue lors de l'envoi. Réessayez plus tard." })
+      setStatus({ ok: false, message: t('contact.form.err.send') })
     } finally {
       setSending(false)
       // clear status after a while
@@ -127,11 +130,10 @@ export function ContactSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl text-white mb-6">Contactez-moi</h2>
+          <h2 className="text-4xl md:text-5xl text-white mb-6">{t('contact.title')}</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto"></div>
           <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-            Je suis toujours intéressé par de nouvelles opportunités et des projets intéressants.
-            Discutons de la manière dont nous pouvons collaborer !
+            {t('contact.sub')}
           </p>
         </motion.div>
 
@@ -144,7 +146,7 @@ export function ContactSection() {
             viewport={{ once: true }}
           >
             <Card className="p-8 bg-gray-900/50 border-white/10">
-              <h3 className="text-2xl text-white mb-6">Envoie-moi un message</h3>
+              <h3 className="text-2xl text-white mb-6">{t('contact.form.title')}</h3>
 
               {/* Form wired to EmailJS */}
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-6" aria-live="polite">
@@ -153,28 +155,28 @@ export function ContactSection() {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="firstName" className="text-gray-300 text-sm mb-2 block">Prénom *</label>
+                    <label htmlFor="firstName" className="text-gray-300 text-sm mb-2 block">{t('contact.form.first')}</label>
                     <Input
                       id="firstName"
                       name="firstName"
-                      placeholder="Ton prénom"
+                      placeholder={t('contact.form.first.ph')}
                       required
                       className="bg-black/50 border-white/20 text-white placeholder:text-gray-500 focus:border-emerald-500"
                     />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="text-gray-300 text-sm mb-2 block">Nom</label>
+                    <label htmlFor="lastName" className="text-gray-300 text-sm mb-2 block">{t('contact.form.last')}</label>
                     <Input
                       id="lastName"
                       name="lastName"
-                      placeholder="Ton nom"
+                      placeholder={t('contact.form.last.ph')}
                       className="bg-black/50 border-white/20 text-white placeholder:text-gray-500 focus:border-emerald-500"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="text-gray-300 text-sm mb-2 block">Email *</label>
+                  <label htmlFor="email" className="text-gray-300 text-sm mb-2 block">{t('contact.form.email')}</label>
                   <Input
                     id="email"
                     name="email"
@@ -186,21 +188,21 @@ export function ContactSection() {
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="text-gray-300 text-sm mb-2 block">Sujet</label>
+                  <label htmlFor="subject" className="text-gray-300 text-sm mb-2 block">{t('contact.form.subject')}</label>
                   <Input
                     id="subject"
                     name="subject"
-                    placeholder="Sujet de discussion"
+                    placeholder={t('contact.form.subject.ph')}
                     className="bg-black/50 border-white/20 text-white placeholder:text-gray-500 focus:border-emerald-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="text-gray-300 text-sm mb-2 block">Message *</label>
+                  <label htmlFor="message" className="text-gray-300 text-sm mb-2 block">{t('contact.form.msg')}</label>
                   <Textarea
                     id="message"
                     name="message"
-                    placeholder="Parle-moi de ton projet..."
+                    placeholder={t('contact.form.msg.ph')}
                     rows={5}
                     required
                     className="bg-black/50 border-white/20 text-white placeholder:text-gray-500 focus:border-emerald-500 resize-none"
@@ -208,7 +210,7 @@ export function ContactSection() {
                 </div>
 
                 <Button type="submit" disabled={sending} className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3">
-                  {sending ? 'Envoi...' : 'Envoyer le message'}
+                  {sending ? t('contact.form.sending') : t('contact.form.send')}
                 </Button>
 
                 {status && (
@@ -232,12 +234,9 @@ export function ContactSection() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl text-white mb-6">Connectons-nous</h3>
+              <h3 className="text-2xl text-white mb-6">{t('contact.info.title')}</h3>
               <p className="text-gray-400 leading-relaxed mb-8">
-                Je suis actuellement disponible pour des missions freelance
-                et des opportunités à temps plein. Que vous ayez un projet en tête 
-                ou que vous souhaitiez simplement discuter de technologie,
-                j'aimerais avoir de vos nouvelles.
+                {t('contact.info.sub')}
               </p>
             </div>
 
@@ -256,7 +255,7 @@ export function ContactSection() {
                     <info.icon className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="text-gray-400 text-sm">{info.label}</p>
+                    <p className="text-gray-400 text-sm">{info.labelKey === 'Email' ? 'Email' : t(info.labelKey)}</p>
                     <p className="text-white">{info.value}</p>
                   </div>
                 </motion.a>
@@ -264,7 +263,7 @@ export function ContactSection() {
             </div>
 
             <div className="pt-8">
-              <h4 className="text-white text-lg mb-4">Abonne-toi</h4>
+              <h4 className="text-white text-lg mb-4">{t('contact.social.title')}</h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -298,7 +297,7 @@ export function ContactSection() {
           className="border-t border-white/10 mt-16 pt-8 text-center"
         >
           <p className="text-gray-400">
-            © 2025-2026 Mouhamed Boucounta Ba. Conçu et réalisé avec ❤️ en utilisant React et Tailwind CSS.
+            {t('contact.footer')}
           </p>
         </motion.div>
       </div>

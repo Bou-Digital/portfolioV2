@@ -13,88 +13,30 @@ import {
   Sparkles,
   Image,
 } from 'lucide-react'
+import { useLang } from '../context/LangContext'
+import type { TranslationKey } from '../i18n/translations'
 
-const services = [
-  {
-    icon: Globe,
-    title: 'Développement Web',
-    description:
-      'Applications web modernes et performantes avec les dernières technologies front-end et back-end.',
-    tags: ['React', 'Angular', 'Vue.js', 'TypeScript'],
-    gradient: 'from-blue-500/20 to-blue-600/5',
-    border: 'border-blue-500/30 hover:border-blue-400/60',
-    iconBg: 'bg-blue-500/20',
-    iconColor: 'text-blue-400',
-  },
-  {
-    icon: Smartphone,
-    title: 'Développement Mobile',
-    description:
-      'Applications mobiles cross-platform fluides et natives pour iOS et Android.',
-    tags: ['Flutter', 'React Native', 'Android'],
-    gradient: 'from-emerald-500/20 to-emerald-600/5',
-    border: 'border-emerald-500/30 hover:border-emerald-400/60',
-    iconBg: 'bg-emerald-500/20',
-    iconColor: 'text-emerald-400',
-  },
-  {
-    icon: Layers,
-    title: 'Applications SaaS',
-    description:
-      'Solutions métiers sur mesure : gestion de restaurant, boutique, stock, RH, facturation...',
-    tags: ['Spring Boot', 'Node.js', 'MySQL', 'PostgreSQL'],
-    gradient: 'from-purple-500/20 to-purple-600/5',
-    border: 'border-purple-500/30 hover:border-purple-400/60',
-    iconBg: 'bg-purple-500/20',
-    iconColor: 'text-purple-400',
-  },
-  {
-    icon: Layout,
-    title: 'Site Vitrine',
-    description:
-      'Sites de présentation élégants et performants pour votre entreprise, marque ou activité.',
-    tags: ['Next.js', 'React', 'TailwindCSS', 'SEO'],
-    gradient: 'from-orange-500/20 to-orange-600/5',
-    border: 'border-orange-500/30 hover:border-orange-400/60',
-    iconBg: 'bg-orange-500/20',
-    iconColor: 'text-orange-400',
-  },
-  {
-    icon: ShoppingCart,
-    title: 'Site E-commerce',
-    description:
-      'Boutiques en ligne complètes avec paiement en ligne, gestion des commandes et tableau de bord.',
-    tags: ['Next.js', 'Stripe', 'WooCommerce', 'Shopify'],
-    gradient: 'from-pink-500/20 to-pink-600/5',
-    border: 'border-pink-500/30 hover:border-pink-400/60',
-    iconBg: 'bg-pink-500/20',
-    iconColor: 'text-pink-400',
-  },
-  {
-    icon: Palette,
-    title: 'Infographie & Design',
-    description:
-      'Création de logos, flyers, cartes de visite, affiches et visuels pour vos réseaux sociaux.',
-    tags: ['Illustrator', 'Photoshop', 'Figma', 'Canva'],
-    gradient: 'from-yellow-500/20 to-yellow-600/5',
-    border: 'border-yellow-500/30 hover:border-yellow-400/60',
-    iconBg: 'bg-yellow-500/20',
-    iconColor: 'text-yellow-400',
-  },
-  {
-    icon: Image,
-    title: 'Création de Logo',
-    description:
-      'Logos professionnels et identité visuelle sur mesure pour donner une image forte à votre marque.',
-    tags: ['Branding', 'Illustrator', 'Figma'],
-    gradient: 'from-red-500/20 to-red-600/5',
-    border: 'border-red-500/30 hover:border-red-400/60',
-    iconBg: 'bg-red-500/20',
-    iconColor: 'text-red-400',
-  },
+const SERVICE_DEFS: {
+  icon: typeof Globe
+  titleKey: TranslationKey
+  descKey: TranslationKey
+  tags: string[]
+  gradient: string
+  border: string
+  iconBg: string
+  iconColor: string
+}[] = [
+  { icon: Globe,        titleKey: 's1.title', descKey: 's1.desc', tags: ['React', 'Angular', 'Vue.js', 'TypeScript'],           gradient: 'from-blue-500/20 to-blue-600/5',    border: 'border-blue-500/30 hover:border-blue-400/60',       iconBg: 'bg-blue-500/20',    iconColor: 'text-blue-400' },
+  { icon: Smartphone,   titleKey: 's2.title', descKey: 's2.desc', tags: ['Flutter', 'React Native', 'Android'],                 gradient: 'from-emerald-500/20 to-emerald-600/5', border: 'border-emerald-500/30 hover:border-emerald-400/60', iconBg: 'bg-emerald-500/20', iconColor: 'text-emerald-400' },
+  { icon: Layers,       titleKey: 's3.title', descKey: 's3.desc', tags: ['Spring Boot', 'Node.js', 'MySQL', 'PostgreSQL'],      gradient: 'from-purple-500/20 to-purple-600/5', border: 'border-purple-500/30 hover:border-purple-400/60',   iconBg: 'bg-purple-500/20',  iconColor: 'text-purple-400' },
+  { icon: Layout,       titleKey: 's4.title', descKey: 's4.desc', tags: ['Next.js', 'React', 'TailwindCSS', 'SEO'],             gradient: 'from-orange-500/20 to-orange-600/5', border: 'border-orange-500/30 hover:border-orange-400/60',   iconBg: 'bg-orange-500/20',  iconColor: 'text-orange-400' },
+  { icon: ShoppingCart, titleKey: 's5.title', descKey: 's5.desc', tags: ['Next.js', 'Stripe', 'WooCommerce', 'Shopify'],        gradient: 'from-pink-500/20 to-pink-600/5',    border: 'border-pink-500/30 hover:border-pink-400/60',       iconBg: 'bg-pink-500/20',    iconColor: 'text-pink-400' },
+  { icon: Palette,      titleKey: 's6.title', descKey: 's6.desc', tags: ['Illustrator', 'Photoshop', 'Figma', 'Canva'],         gradient: 'from-yellow-500/20 to-yellow-600/5', border: 'border-yellow-500/30 hover:border-yellow-400/60',   iconBg: 'bg-yellow-500/20',  iconColor: 'text-yellow-400' },
+  { icon: Image,        titleKey: 's7.title', descKey: 's7.desc', tags: ['Branding', 'Illustrator', 'Figma'],                   gradient: 'from-red-500/20 to-red-600/5',      border: 'border-red-500/30 hover:border-red-400/60',         iconBg: 'bg-red-500/20',     iconColor: 'text-red-400' },
 ]
 
 export function ServicesSection() {
+  const { t } = useLang()
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -112,23 +54,22 @@ export function ServicesSection() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm mb-6">
             <Sparkles className="w-4 h-4" />
-            Collaboration & Services
+            {t('services.badge')}
           </div>
           <h2 className="text-4xl md:text-5xl text-white mb-6">
-            Ce que je peux faire pour vous
+            {t('services.title')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-blue-400 mx-auto"></div>
           <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-            Vous avez un projet web, mobile ou un besoin en design ? Je vous
-            accompagne de l'idée à la réalisation avec soin et professionnalisme.
+            {t('services.sub')}
           </p>
         </motion.div>
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-          {services.map((service, index) => (
+          {SERVICE_DEFS.map((service, index) => (
             <motion.div
-              key={service.title}
+              key={service.titleKey}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.08, duration: 0.6 }}
@@ -143,10 +84,10 @@ export function ServicesSection() {
                   <service.icon className={`w-6 h-6 ${service.iconColor}`} />
                 </div>
                 <h3 className="text-lg text-white mb-2 group-hover:text-emerald-400 transition-colors duration-300">
-                  {service.title}
+                  {t(service.titleKey)}
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                  {service.description}
+                  {t(service.descKey)}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {service.tags.map((tag) => (
@@ -177,18 +118,17 @@ export function ServicesSection() {
 
           <div className="relative z-10">
             <h3 className="text-3xl md:text-4xl text-white mb-4">
-              Vous avez un projet en tête ?
+              {t('services.cta.title')}
             </h3>
             <p className="text-gray-400 mb-8 max-w-xl mx-auto text-lg">
-              Discutons ensemble de vos besoins. Devis gratuit, réponse rapide et
-              collaboration sur mesure.
+              {t('services.cta.sub')}
             </p>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
               <Button
                 onClick={scrollToContact}
                 className="bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600 text-white px-10 py-4 rounded-full text-lg font-semibold inline-flex items-center gap-2 shadow-lg shadow-emerald-500/20"
               >
-                Contactez-moi
+                {t('services.cta.btn')}
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </motion.div>

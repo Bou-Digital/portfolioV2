@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from './ui/button'
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
+import { useLang } from '../context/LangContext'
 
 function CountUp({ end, delay = 0 }: { end: number; delay?: number }) {
   const [count, setCount] = useState(0)
@@ -33,6 +34,7 @@ function TikTokIcon({ className }: { className?: string }) {
   )
 }
 export function HeroSection() {
+  const { t } = useLang()
   const scrollToProjects = () => {
     const element = document.getElementById('projets')
     if (element) {
@@ -89,9 +91,9 @@ export function HeroSection() {
             transition={{ delay: 0.2 }}
             className="text-emerald-400 text-lg tracking-wider"
           >
-            Bienvenue chez
+            {t('hero.welcome')}
           </motion.p>
-          
+
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -100,31 +102,30 @@ export function HeroSection() {
           >
            Mouhamed Boucounta Ba
           </motion.h1>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
             className="text-2xl md:text-4xl text-gray-300 mb-8"
           >
-            Je suis{' '}
+            {t('hero.tagline')}{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400">
-              Développeur Full Stack, 
+              {t('hero.role')}
             </span>
-            {' '}expert en conception{' '}
+            {' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-              d’applications Web et Mobile modernes.
+              {t('hero.role2')}
             </span>
           </motion.div>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
             className="text-gray-400 text-lg max-w-2xl mx-auto mb-8"
           >
-            Fondateur de Bou Digital — créateur de 2 SaaS de gestion pour les commerces d'Afrique de l'Ouest.
-            Certifié FORCE-N IA. Remote international. Agile & livraisons rapides.
+            {t('hero.sub')}
           </motion.p>
 
           <motion.div
@@ -133,17 +134,17 @@ export function HeroSection() {
             transition={{ delay: 0.9 }}
             className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto"
           >
-            {[
-              { value: 4, suffix: '+', label: "ans d'expérience" },
-              { value: 2, suffix: '', label: 'SaaS conçus' },
-              { value: 4, suffix: '', label: 'apps Play Store' },
-              { value: 9, suffix: '', label: 'modules livrés' },
-            ].map((stat, i) => (
+            {([
+              { value: 4, suffix: '+', labelKey: 'hero.stat1' as const },
+              { value: 2, suffix: '', labelKey: 'hero.stat2' as const },
+              { value: 4, suffix: '', labelKey: 'hero.stat3' as const },
+              { value: 9, suffix: '', labelKey: 'hero.stat4' as const },
+            ] as const).map((stat, i) => (
               <div key={i} className="text-center py-3 px-2 bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm">
                 <div className="text-2xl font-bold text-emerald-400">
                   <CountUp end={stat.value} delay={1000 + i * 150} />{stat.suffix}
                 </div>
-                <div className="text-gray-400 text-xs mt-1 leading-tight">{stat.label}</div>
+                <div className="text-gray-400 text-xs mt-1 leading-tight">{t(stat.labelKey)}</div>
               </div>
             ))}
           </motion.div>
@@ -158,7 +159,7 @@ export function HeroSection() {
               onClick={scrollToProjects}
               className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
             >
-              Regarder mon travail
+              {t('hero.cta')}
             </Button>
             
             <div className="flex items-center space-x-4">

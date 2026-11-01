@@ -3,30 +3,21 @@
 import { motion } from 'framer-motion'
 import { Card } from './ui/card'
 import { Building2, Globe, Brain, Zap } from 'lucide-react'
+import { useLang } from '../context/LangContext'
 
 export function AboutSection() {
+  const { t } = useLang()
+
   const features = [
-    {
-      icon: Building2,
-      title: 'Fondateur — Bou Digital',
-      description: "Créateur de 2 SaaS multi-tenant déployables pour chaque client : Boutique Gestion et Restaurant Manager, adaptés à l'Afrique francophone."
-    },
-    {
-      icon: Globe,
-      title: 'Remote international',
-      description: "Collaboration en remote avec des équipes suisses (Faseya / Va Bene) et des clients en Afrique de l'Ouest."
-    },
-    {
-      icon: Brain,
-      title: 'Certifié FORCE-N IA',
-      description: 'Certifié en Intelligence Artificielle appliquée — programme national sénégalais FORCE-N (jan–juil 2025).'
-    },
-    {
-      icon: Zap,
-      title: 'Agile & livraisons rapides',
-      description: 'Boutique Gestion livré en 1 mois. 9 modules Walalma intégrés en moins d\'un mois directement en production.'
-    }
+    { icon: Building2, titleKey: 'about.f1.title' as const, descKey: 'about.f1.desc' as const },
+    { icon: Globe,     titleKey: 'about.f2.title' as const, descKey: 'about.f2.desc' as const },
+    { icon: Brain,     titleKey: 'about.f3.title' as const, descKey: 'about.f3.desc' as const },
+    { icon: Zap,       titleKey: 'about.f4.title' as const, descKey: 'about.f4.desc' as const },
   ]
+
+  const traits = [
+    'about.trait1', 'about.trait2', 'about.trait3', 'about.trait4',
+  ] as const
 
   return (
     <section id="à propos" className="py-20 bg-gray-900">
@@ -38,7 +29,7 @@ export function AboutSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl text-white mb-6">À propos de moi</h2>
+          <h2 className="text-4xl md:text-5xl text-white mb-6">{t('about.title')}</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-blue-400 mx-auto"></div>
         </motion.div>
         
@@ -51,20 +42,21 @@ export function AboutSection() {
             className="space-y-6"
           >
             <h3 className="text-2xl text-white mb-4">
-              Passionné par la création d’expériences digitales significatives
+              {t('about.h3')}
             </h3>
             <p className="text-gray-300 leading-relaxed">
-              Développeur Full Stack Web & Mobile avec plus de 4 ans d’expérience dans la conception
-              et le déploiement de solutions digitales en production en Afrique de l’Ouest.
-              Fondateur de <span className="text-emerald-400">Bou Digital</span> — suite de SaaS
-              multi-tenant (Boutique Gestion, Restaurant Manager), prêts à déployer.
+              {t('about.p1').replace('Bou Digital', '').split('').length > 0 && (
+                <>
+                  {t('about.p1').split('Bou Digital')[0]}
+                  <span className="text-emerald-400">Bou Digital</span>
+                  {t('about.p1').split('Bou Digital')[1]}
+                </>
+              )}
             </p>
             <p className="text-gray-300 leading-relaxed">
-              Expérience internationale en remote (Suisse), livraisons Play Store, architecture
-              microservices, intégration IoT et IA appliquée. Certifié FORCE-N en Intelligence
-              Artificielle. Rigoureux, orienté résultats, à l’aise en Agile et en remote.
+              {t('about.p2')}
             </p>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -72,12 +64,12 @@ export function AboutSection() {
               viewport={{ once: true }}
               className="flex flex-wrap gap-3 mt-6"
             >
-              {['Résolution de problèmes', 'Esprit d’équipe', 'Apprentissage rapide', 'Sens du détail'].map((trait, index) => (
+              {traits.map((key) => (
                 <span
-                  key={trait}
+                  key={key}
                   className="px-4 py-2 bg-emerald-500/20 text-emerald-400 rounded-full text-sm border border-emerald-500/30"
                 >
-                  {trait}
+                  {t(key)}
                 </span>
               ))}
             </motion.div>
@@ -102,8 +94,8 @@ export function AboutSection() {
                   <div className="text-emerald-400 mb-4 group-hover:scale-110 transition-transform duration-300">
                     <feature.icon className="w-8 h-8" />
                   </div>
-                  <h4 className="text-white text-lg mb-2">{feature.title}</h4>
-                  <p className="text-gray-400 text-sm">{feature.description}</p>
+                  <h4 className="text-white text-lg mb-2">{t(feature.titleKey)}</h4>
+                  <p className="text-gray-400 text-sm">{t(feature.descKey)}</p>
                 </Card>
               </motion.div>
             ))}
